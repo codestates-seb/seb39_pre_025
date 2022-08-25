@@ -8,7 +8,7 @@ const App = () => {
   const onClick = async e => {
     e.preventDefault();
     await axios
-      .get('http://localhost:8080/api/test')
+      .get('https://9557-49-169-198-207.jp.ngrok.io/')
       .then(res => {
         setData(res.data);
       })
