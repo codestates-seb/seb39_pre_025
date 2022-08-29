@@ -8,10 +8,13 @@ import AddQuestion from './pages/Questions/AddQuestion';
 import EditQuestion from './pages/MyPage/EditQuestion';
 import DeleteQuestion from './pages/MyPage/DeleteQuestion';
 import MyPage from './pages/MyPage/MyPage';
+import Footer from './components/Footer';
+import { BackgroundLayout, GlobalStyle } from './GlobalStyle';
 
 function App() {
   return (
-    <div>
+    <BackgroundLayout>
+      <GlobalStyle />
       <Navbar />
 
       <Routes>
@@ -23,7 +26,8 @@ function App() {
         <Route path="/edit-question" element={<EditQuestion />} />
         <Route path="/delete-question" element={<DeleteQuestion />} />
       </Routes>
-    </div>
+      <Footer />
+    </BackgroundLayout>
   );
 }
 
