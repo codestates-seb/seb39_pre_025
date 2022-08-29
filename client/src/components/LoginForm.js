@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 function LoginForm() {
   const [userInfo, setUserInfo] = useState({ email: '', password: '' });
@@ -10,6 +11,14 @@ function LoginForm() {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post('/users/login', userInfo)
+      .then((response) => console.log(response.data))
+      .catch((err) => console.log(`${err}`));
   };
 
   return (

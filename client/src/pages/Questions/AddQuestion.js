@@ -21,7 +21,7 @@ function AddQuestion() {
   const onSubmit = (event) => {
     event.preventDefault();
     axios
-      .post('/mail', {
+      .post('/questions', {
         data: {
           ...data,
         },
