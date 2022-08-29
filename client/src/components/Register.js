@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import styled from 'styled-components';
 
 function Register() {
   const navigate = useNavigate();
@@ -31,28 +32,73 @@ function Register() {
   };
 
   return (
-    <div>
+    <RegisterLayout>
       <form htmlFor="register" onSubmit={onSubmit} onChange={onChange}>
-        <label htmlFor="email">
-          Email
-          <input id="email" name="email" type="email" />
-        </label>
         <label htmlFor="user-id">
-          Name
+          Display Name <br />
           <input id="user-id" name="userId" type="text" />
         </label>
+        <label htmlFor="email">
+          Email <br />
+          <input id="email" name="email" type="email" />
+        </label>
         <label htmlFor="password">
-          Password
+          Password <br />
           <input id="password" name="password" type="password" />
         </label>
+        <span>
+          Passwords must contain at least eight characters, including at least 1
+          letter and 1 number.
+        </span>
+        <br />
         <label htmlFor="confirm_password">
-          Confirm Password
+          Confirm Password <br />
           <input id="confirm_password" name="confirmPassword" type="password" />
         </label>
+        <br />
         <button type="submit">Register</button>
       </form>
-    </div>
+    </RegisterLayout>
   );
 }
 
 export default Register;
+
+const RegisterLayout = styled.div`
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 600px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  & form {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    & label {
+      width: 100%;
+    }
+    & input {
+      width: 95%;
+      height: 20px;
+      margin-top: 1rem;
+    }
+    & span {
+      font-size: 10px;
+      text-align: left;
+    }
+    & button {
+      color: #fff;
+      width: 100%;
+      height: 30px;
+      background-color: #078aff;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+  }
+`;
