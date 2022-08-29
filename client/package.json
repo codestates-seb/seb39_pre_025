@@ -7,6 +7,7 @@
     "axios": "^0.27.2",
     "eslint-plugin-async-await": "^0.0.0",
     "express-async-handler": "^1.2.0",
+    "msw": "^0.45.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
@@ -47,5 +48,8 @@
     "prettier": "^2.7.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

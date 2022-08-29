@@ -1,5 +1,5 @@
 import React from 'react';
-import Logout from '../../components/Logout';
+import Logout from './Logout';
 import Questions from '../Questions/Questions';
 
 function LandingPage() {
