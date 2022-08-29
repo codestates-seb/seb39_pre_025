@@ -35,7 +35,7 @@ function LoginForm() {
         <label htmlFor="pasword">
           Password <br />
           <input type="password" />
-        </label>{' '}
+        </label>
         <br />
         <button
           type="submit"

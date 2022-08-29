@@ -14,7 +14,6 @@ function SocialLogin() {
 export default SocialLogin;
 
 const SocialLoginLayout = styled.div`
-  width: 100%;
   height: 35px;
   margin-bottom: 20px;
   & button {
