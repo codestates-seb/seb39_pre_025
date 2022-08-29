@@ -24,6 +24,7 @@
       "version": "detect"
     }
   },
+
   "rules": {
     "prettier/prettier": [
       "error",
