@@ -1,4 +1,4 @@
-package com.preproject.be;
+package com.preproject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
