@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { loginUser } from '../redux/actions';
 
 function LoginForm() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState({ email: '', password: '' });
 
   const onChange = (e) => {
@@ -15,14 +10,6 @@ function LoginForm() {
       ...prev,
       [name]: value,
     }));
-  };
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    const res = await dispatch(loginUser(userInfo));
-    if (res.payload.loginSuccess === true) {
-      return navigate('/');
-    }
   };
 
   return (

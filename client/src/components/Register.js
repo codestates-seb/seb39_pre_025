@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { newUser } from '../redux/actions';
 
 function Register() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const [userInfo, setuserInfo] = useState({
     email: '',
     name: '',
@@ -19,14 +13,6 @@ function Register() {
       ...prev,
       [name]: value,
     }));
-  };
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    if (userInfo.password !== userInfo.confirmPassword) {
-      return alert('입력하신 비밀번호가 맞지 않습니다.');
-    }
-    const res = await dispatch(newUser(userInfo));
-    if (res.payload.success === true) return navigate('/login');
   };
 
   return (
