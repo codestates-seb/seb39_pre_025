@@ -1,35 +1,49 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { NavLink } from 'react-router-dom';
+// 어사이드 메뉴 컴포넌트 입니다
 function AsideMenubar() {
-  const [navStyle, setNavStyle] = useState(0);
-  const handleNavStyle = (id) => {
-    setNavStyle(id);
-  };
+  const [asideMenuTap, setAsideMenuTap] = useState(0);
   const asideMenuList = [
-    { id: 1, name: 'Questions', element: '/mypage' },
+    { id: 1, name: 'Questions', element: '/questions' },
     { id: 2, name: 'My Page', element: '/mypage' },
-    { id: 3, name: 'Edit Profile', element: '/mypage' },
-    { id: 4, name: 'My Questions', element: '/mypage' },
+    { id: 3, name: 'Edit Profile', element: '/edit-mypage' },
+    { id: 4, name: 'My Questions', element: '/my-question' },
   ];
-
+  const asidemenuClickHandler = (id) => {
+    setAsideMenuTap(id);
+  };
   return (
     <AsideMenuBarLayout>
       <h2>Home</h2>
-      <Nav>
-        {asideMenuList.map(({ id, name, element }) => {
+      <div>
+        {asideMenuList.map(({ name, element, id }) => {
           return (
-            <NavItem
-              key={id}
-              onClick={() => handleNavStyle(id)}
-              changeNavStyle={navStyle === id}
-            >
-              <NavLink to={element}>{name}</NavLink>
-            </NavItem>
+            <AsideNavItem>
+              <NavLink
+                to={element}
+                style={{
+                  width: '100%',
+                  textAlign: 'center',
+                  lineHeight: '35px',
+                  color: '#000',
+                  textDecorationLine: 'none',
+                }}
+              >
+                <li
+                  style={{ width: '100%' }}
+                  role="presentation"
+                  index={id}
+                  className={asideMenuTap === id ? 'submenu active' : 'submenu'}
+                  onClick={() => asidemenuClickHandler(id)}
+                >
+                  {name}
+                </li>
+              </NavLink>
+            </AsideNavItem>
           );
         })}
-      </Nav>
+      </div>
     </AsideMenuBarLayout>
   );
 }
@@ -37,36 +51,43 @@ function AsideMenubar() {
 export default AsideMenubar;
 
 const AsideMenuBarLayout = styled.div`
-  width: 150px;
-  padding: 1rem;
-  border-right: 2px solid #eee;
-
-  &h2 {
+  width: 180px;
+  border-right: 3px solid #eee;
+  box-sizing: border-box;
+  margin: 10px;
+  & h2 {
+    box-sizing: border-box;
+    font-size: 20px;
+    padding: 10px;
+    margin-left: 1rem;
     text-align: left;
+    cursor: pointer;
+    border-bottom: 1px solid #aaa;
   }
 `;
-const Nav = styled.ul`
-  text-align: center;
-  margin-top: 10px;
-`;
-const NavItem = styled.li`
+const AsideNavItem = styled.ul`
   width: 100%;
-  height: 30px;
-  font-size: 15px;
-  line-height: 24px;
-  padding: 10px;
+  height: 35px;
+  box-sizing: border-box;
+  color: rgba(73, 73, 73, 0.5);
+  font-weight: bold;
+  display: flex;
+  justify-content: space-evenly;
   list-style: none;
-  background-color: #fff;
-  color: #000;
-  .active {
-    background-color: #f27622;
-    color: #fff;
+  .submenu {
+    background-color: transparent;
+    font-weight: 300;
+    width: 100%;
+    cursor: pointer;
+    border: none;
   }
-`;
-const NavLink = styled(Link)`
-  margin-right: 70px;
-  color: inherit;
-  &:last-child {
-    margin-right: 0;
+  .active {
+    background-color: #eff0f1;
+    border-right: 2px solid #f27622;
+    font-weight: 800;
+    transition: 0.3s;
+  }
+  & div.desc {
+    text-align: center;
   }
 `;

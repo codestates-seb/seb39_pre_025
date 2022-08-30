@@ -11,6 +11,7 @@ import MyPage from './pages/MyPage/MyPage';
 import Footer from './components/Footer';
 import { BackgroundLayout, GlobalStyle } from './GlobalStyle';
 import Questions from './pages/Questions/Questions';
+import EditProfilePage from './pages/MyPage/EditProfilePage';
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/edit-mypage" element={<EditProfilePage />} />
+
           <Route path="/add-question" element={<AddQuestion />} />
           <Route path="/edit-question" element={<EditQuestion />} />
           <Route path="/delete-question" element={<DeleteQuestion />} />
