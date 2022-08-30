@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import LoginForm from '../../components/LoginForm';
-import SocialLogin from '../../components/SocialLogin';
+import LoginForm from './LoginForm';
+import SocialLogin from '../RegisterPage/SocialLogin';
 
 function LoginPage() {
   return (

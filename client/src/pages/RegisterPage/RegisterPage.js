@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Register from '../../components/Register';
-import SocialLogin from '../../components/SocialLogin';
+import Register from './Register';
+import SocialLogin from './SocialLogin';
 
 function RegisterPage() {
   return (

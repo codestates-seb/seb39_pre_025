@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function AddQuestion() {
   const [data, setData] = useState({
-    board_id: '',
+    questionId: Math.random(),
     writer: '',
     title: '',
     content: '',

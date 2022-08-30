@@ -18,12 +18,6 @@ function Questions() {
   const addQuestion = () => {
     navigate('/add-question');
   };
-  const editQuestion = () => {
-    navigate('/edit-question');
-  };
-  const deleteQuestion = () => {
-    navigate('/delete-question');
-  };
 
   return (
     <div>
@@ -31,15 +25,15 @@ function Questions() {
         <button type="button" onClick={addQuestion}>
           Add Question
         </button>
-        <button type="button" onClick={editQuestion}>
-          Edit Question
-        </button>
-        <button type="button" onClick={deleteQuestion}>
-          Delete Question
-        </button>
       </div>
       {questionsList?.map((question) => {
-        return <Question title={question.title} content={question.content} />;
+        return (
+          <Question
+            key={Math.random()}
+            title={question.title}
+            content={question.content}
+          />
+        );
       })}
     </div>
   );
