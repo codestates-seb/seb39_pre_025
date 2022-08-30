@@ -10,24 +10,28 @@ import DeleteQuestion from './pages/MyPage/DeleteQuestion';
 import MyPage from './pages/MyPage/MyPage';
 import Footer from './components/Footer';
 import { BackgroundLayout, GlobalStyle } from './GlobalStyle';
+import Questions from './pages/Questions/Questions';
 
 function App() {
   return (
-    <BackgroundLayout>
-      <GlobalStyle />
-      <Navbar />
+    <>
+      <BackgroundLayout>
+        <GlobalStyle />
+        <Navbar />
 
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/add-question" element={<AddQuestion />} />
-        <Route path="/edit-question" element={<EditQuestion />} />
-        <Route path="/delete-question" element={<DeleteQuestion />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/questions" element={<Questions />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/add-question" element={<AddQuestion />} />
+          <Route path="/edit-question" element={<EditQuestion />} />
+          <Route path="/delete-question" element={<DeleteQuestion />} />
+        </Routes>
+      </BackgroundLayout>
       <Footer />
-    </BackgroundLayout>
+    </>
   );
 }
 
