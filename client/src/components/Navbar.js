@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStackOverflow } from '@fortawesome/fontawesome-free-brands';
+import { BiSearch } from 'react-icons/bi';
+import Aside from './Aside';
 
 function Navbar() {
   const navigate = useNavigate();
@@ -14,13 +16,16 @@ function Navbar() {
   const onChange = (event) => {
     setKeyword(event.target.value);
   };
-  const onSubmit = (event) => {
-    // 쿼리파라미터로 들어가는건지 확인받기
+  const handleSearchInput = async (event) => {
+    // TODO: 키워드만 추려서 검색결과 들어가는지 확인
+    // 쿼리 파라미터 제대로 안들어가고 있음.
+    // 현재 검색 요청 시 url 상태: /questions?keyword=
     event.preventDefault();
-    axios
-      .get('/questions', { params: { keyword } })
-      .then((response) => console.log(response.data))
-      .catch((err) => console.log(`${err}`));
+    const res = await axios.get('/questions', { params: { keyword } });
+    // .then((response) => console.log(response.data))
+    // .catch((err) => console.log(`${err}`));
+    console.log(res.data);
+    setKeyword('');
   };
 
   const handleNavbarPopup = () => {
@@ -31,78 +36,106 @@ function Navbar() {
     return navigate('/');
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <NavbarLayout>
-      <NavLinkBox onClick={handleNavbarPopup}>
-        {isOpen ? (
-          <ul>
-            <li>
-              <Link to="/">홈</Link>
-            </li>
-            <li>
-              <Link to="/login">로그인</Link>
-            </li>
-            <li>
-              <Link to="/register">회원가입</Link>
-            </li>
-            <li>
-              <Link to="/mypage">마이페이지</Link>
-            </li>
-          </ul>
-        ) : (
-          <GiHamburgerMenu />
-        )}
-      </NavLinkBox>
-      <LogoButton type="button" onClick={handleLogoClick}>
-        <FontAwesomeIcon icon={faStackOverflow} size="2x" />
-        <span>
-          stack <b>overflow</b>
-        </span>
-      </LogoButton>
-      <div>
-        <form onChange={onChange} onSubmit={onSubmit}>
+      <div className="left">
+        <NavLinkBox onClick={handleNavbarPopup}>
+          {isOpen ? <Aside /> : <GiHamburgerMenu />}
+        </NavLinkBox>
+        <LogoButton type="button" onClick={handleLogoClick}>
+          <FontAwesomeIcon icon={faStackOverflow} size="2x" />
+          <span>
+            stack <b>overflow</b>
+          </span>
+        </LogoButton>
+      </div>
+      <div className="mid">
+        <form onChange={onChange} onSubmit={handleSearchInput}>
           <label htmlFor="search">
-            <input id="search" type="text" />
+            <input
+              id="search"
+              value={keyword}
+              type="text"
+              placeholder="Search..."
+            />
           </label>
-          <input type="submit" value="질문 검색" />
+          <button id="search-btn" type="submit">
+            <BiSearch />
+          </button>
         </form>
       </div>
-      <ButtonBox>
+      <div className="right">
         <Button onClick={handleSubmit}>Log in</Button>
         <Button onClick={handleSubmit}>Sign up</Button>
-      </ButtonBox>
+      </div>
     </NavbarLayout>
   );
 }
 
 export default Navbar;
 
-// TODO: 검색창 어떻게 해야 이쁘게 가운데로 보낼까 고민하다 일단 넘겼습니다..ㅎㅎ
-// TODO: 햄버거메뉴 클릭시 팝업 위치가 navbar 아래로 가고 햄버거메뉴도 x모양으로 바뀌도록 추후 구현?
-
 const NavbarLayout = styled.div`
-  border: 1px solid gray;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+  background-color: #f7f7f7;
   width: 100%;
   height: 10%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+
+  .left {
+    // navbar 좌측 영역: 햄버거, 로고버튼
+    display: flex;
+    align-items: center;
+    width: 20%;
+  }
+
+  .mid {
+    // navbar 중앙: 검색어 입력 인풋, 검색버튼
+    width: 60%;
+
+    #search {
+      // 검색어 입력 인풋필드
+      width: 50%;
+      height: 40px;
+      border: 0.2px solid gray;
+    }
+
+    #search-btn {
+      // 질문 검색 버튼
+      color: gray;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 25px;
+      position: relative;
+      top: 8px;
+      margin: 0 10px;
+
+      :hover {
+        color: skyblue;
+      }
+    }
+  }
+
+  .right {
+    // navbar 우측: 로그인, 로그아웃 버튼
+  }
 `;
 
 const NavLinkBox = styled.div`
+  border: 1px solid gray;
   display: flex;
 `;
 
 const LogoButton = styled.button`
   background: transparent;
-  border: none;
   cursor: pointer;
   height: 10%;
-`;
-
-const ButtonBox = styled.div`
-  display: flex;
+  border: none;
 `;
 
 const Button = styled.button`
