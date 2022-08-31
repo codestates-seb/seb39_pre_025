@@ -42,8 +42,8 @@ function EditProfileForm() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(profileTitle);
-    console.log(profileContent);
+    console.log(profileTitle, profileContent, editPassword, editName, imgSrc);
+
     const formData = new FormData();
     formData.append('image', file);
     const body = {
@@ -57,6 +57,7 @@ function EditProfileForm() {
       axios
         .put('/mypage/edit-profile', body)
         .then((res) => console.log(res, body));
+
       toast.success('업로드 완료');
       setTimeout(() => {
         setFileName(defaultFileName);
@@ -126,8 +127,10 @@ function EditProfileForm() {
             onChange={profileContentHandler}
           />
         </label>
-        <button type="submit"> update </button>
-        <button type="button"> cancel </button>
+        <button type="submit" style={{ marginRight: '10px' }}>
+          update
+        </button>
+        <button type="button"> cancel</button>
       </form>
     </EditProfileLayout>
   );
@@ -138,17 +141,35 @@ export default EditProfileForm;
 const EditProfileLayout = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem;
-  width: 500px;
+  box-sizing: border-box;
+  margin-left: 3rem;
+  width: 400px;
+  padding: 2rem;
+  border-radius: 15px;
   background-color: #fff;
+  box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.2);
+
   align-items: center;
   & input {
     width: 100%;
-    height: 30px;
+    height: 20px;
   }
   & textarea {
     width: 100%;
-    height: 200px;
+    height: 150px;
+  }
+  & button {
+    width: 80px;
+    height: 30px;
+    background-color: #eee;
+    border-radius: 5px;
+    color: #078aff;
+    border: 1px solid #078aff;
+    cursor: pointer;
+  }
+  & button:hover {
+    background-color: #078aff;
+    color: #fff;
   }
 `;
 
@@ -159,7 +180,6 @@ const PrevImgBox = styled.div`
   align-items: center;
 
   img {
-    border-radius: 10px;
     object-fit: fill;
     width: 0%;
     opacity: 0;
@@ -174,10 +194,10 @@ const PrevImgBox = styled.div`
 const FileDropper = styled.div`
   overflow: hidden;
   border: 1px solid #000000;
-  width: 100%;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 25px;
+
   display: flex;
   justify-content: center;
   align-items: center;
