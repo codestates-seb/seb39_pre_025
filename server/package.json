@@ -20,6 +20,10 @@
     "concurrently": "^7.3.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+<<<<<<< HEAD
+    "express": "^4.18.1",
+=======
+>>>>>>> 356d6686f91423cdaa075fdd77a530d6ef8cc548
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.3"
   }
