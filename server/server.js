@@ -64,9 +64,10 @@ app.post('/users/register', (req, res) => {
   // req.body에 json 객체로 키-값 이 들어가있다.
   console.log(req.body);
   const user = new User({
-    questionId: Math.random(),
-    title: req.body.title,
-    content: req.body.content,
+    email: req.body.email,
+    userId: req.body.userId,
+    password: req.body.password,
+    confirmPassword: req.body.confirmPassword,
   }); // 정의한 모델을 불러와 요청 안의 데이터로 새 인스턴스 생성
   user.save((err, userInfo) => {
     if (err) return res.json({ success: false, err });
@@ -86,7 +87,7 @@ app.post('/users/login', (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {
       return res.json({
-        loginSuccess: false,
+        loginStatus: false,
         message: '가입되지 않은 사용자입니다. 이메일 주소를 확인해주세요',
       });
     }
@@ -94,7 +95,7 @@ app.post('/users/login', (req, res) => {
     user.comparePassword(req.body.password, (err, isMatch) => {
       if (!isMatch) {
         return res.json({
-          loginSuccess: false,
+          loginStatus: false,
           message: '비밀번호가 틀렸습니다.',
         });
       }
@@ -106,7 +107,7 @@ app.post('/users/login', (req, res) => {
         res
           .cookie('x_auth', user.token)
           .status(200)
-          .json({ loginSuccess: true, userId: user._id });
+          .json({ loginStatus: true, userId: user._id });
       });
     });
   });
@@ -114,7 +115,7 @@ app.post('/users/login', (req, res) => {
 
 // * 2.3 인증기능 라우터 - 인증페이지 요청 응답
 // role이 1이면 관리자, 0이면 일반 유저인 경우로 한다.
-app.get('/api/users/auth', auth, (req, res) => {
+app.get('/users/auth', auth, (req, res) => {
   // './middleware/auth.js'의 auth 함수에서 코드가 종료되면서 next() 호출하므로
   // 미들웨어를 실행시키고 다시 나머지 코드를 실행해서 응답을 보내줌.
   // 미들웨어에서 예외처리를 해두었기 때문에 next()후 여기로 돌아온다면

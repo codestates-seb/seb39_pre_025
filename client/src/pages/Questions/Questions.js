@@ -8,9 +8,9 @@ function Questions() {
   const navigate = useNavigate();
   const [questionsList, setQuestionsList] = useState([]);
   const fetchData = async () => {
+    axios.defaults.withCredentials = true;
     const response = await axios.get('/questions');
-    console.log(response.data);
-    setQuestionsList(response.data.body);
+    setQuestionsList(response.data.questions);
   };
   useEffect(() => {
     fetchData();
