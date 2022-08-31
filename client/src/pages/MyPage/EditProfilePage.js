@@ -36,9 +36,9 @@ const EditProfileLayout = styled.div`
 `;
 const EditProfileBox = styled.div`
   width: 100%;
-  height: 70%;
+  height: 90%;
   display: flex;
-  display: flex;
+  align-items: top;
 `;
 const ProfileImgandInfo = styled.div`
   display: flex;
