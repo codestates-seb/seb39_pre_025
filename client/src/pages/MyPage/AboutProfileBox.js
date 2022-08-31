@@ -36,7 +36,7 @@ function AboutProfileBox() {
             </div>
           );
         })}
-
+        {/* 작성된것이 없으면 아래 내용으로 조건부 렌더링 되도록 */}
         <div>
           <ProfileTitle>자기소개를 작성 하세요</ProfileTitle>
           <ProfileContent>
