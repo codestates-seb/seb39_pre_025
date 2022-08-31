@@ -12,7 +12,6 @@
     "axios": "^0.27.2",
     "eslint-plugin-async-await": "^0.0.0",
     "express-async-handler": "^1.2.0",
-    "msw": "^0.45.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
@@ -57,5 +56,6 @@
   },
   "msw": {
     "workerDirectory": "public"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

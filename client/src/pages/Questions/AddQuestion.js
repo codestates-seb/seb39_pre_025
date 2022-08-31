@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 function AddQuestion() {
   const [data, setData] = useState({
-    questionId: Math.random(),
     writer: '',
     title: '',
     content: '',
-    regdate: '',
-    updatedate: '',
-    member: '',
   });
   const onChange = (event) => {
     const { name, value } = event.target;
@@ -20,12 +18,9 @@ function AddQuestion() {
   };
   const onSubmit = (event) => {
     event.preventDefault();
+    console.log(data);
     axios
-      .post('/questions', {
-        data: {
-          ...data,
-        },
-      })
+      .post('/questions', data)
       .then((res) => {
         console.log(res.data);
       })
@@ -45,6 +40,10 @@ function AddQuestion() {
           <label htmlFor="content">
             내용
             <textarea type="text" id="content" name="content" />
+          </label>
+          <label htmlFor="content">
+            작성자
+            <textarea type="text" id="content" name="writer" />
           </label>
         </div>
         <input type="submit" id="title" value="등록" />
