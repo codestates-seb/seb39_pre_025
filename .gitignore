@@ -229,3 +229,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### 테스트용 서버 환경변수파일
+/server/config

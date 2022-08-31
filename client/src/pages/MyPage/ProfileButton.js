@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 
 function ProfileButton() {
   const [currentTab, setCurrentTab] = useState(0);
   const menuArr = [
-    { id: 0, name: 'Profile' },
-    { id: 1, name: 'My Question' },
+    { id: 0, name: 'Profile', element: '/mypage' },
+    { id: 1, name: 'My Question', element: '/user-question' },
   ];
   const selectMenuHandler = (id) => {
     setCurrentTab(id);
@@ -23,28 +24,34 @@ function ProfileButton() {
   return (
     <ProfileButtonLayout>
       <TabMenu>
-        {menuArr.map(({ name, id }) => {
+        {menuArr.map(({ name, id, element }) => {
           return (
-            <button
-              type="button"
-              key={id}
-              className={currentTab === id ? 'submenu focused' : 'submenu'}
-              onClick={() => selectMenuHandler(id)}
-            >
-              {name}
-            </button>
+            <NavLink to={element}>
+              <button
+                type="button"
+                key={id}
+                className={currentTab === id ? 'submenu' : 'submenu'}
+                onClick={() => selectMenuHandler(id)}
+              >
+                {name}
+              </button>
+            </NavLink>
           );
         })}
       </TabMenu>
 
       <PersonalInFoBox>
         <h3>PERSONAL INFORMATION</h3>
-        <button type="button" onClick={editMyProfile}>
-          Edit Profile
-        </button>
-        <button type="button" onClick={deleteMyAccount}>
-          Delete Account
-        </button>
+        <NavLink to="edit-mypage">
+          <button type="button" onClick={editMyProfile}>
+            Edit Profile
+          </button>
+        </NavLink>
+        <NavLink to="delete-acccount">
+          <button type="button" onClick={deleteMyAccount}>
+            Delete Account
+          </button>
+        </NavLink>
       </PersonalInFoBox>
     </ProfileButtonLayout>
   );
@@ -64,25 +71,25 @@ const TabMenu = styled.ul`
   width: 100%;
   height: 40px;
   box-sizing: border-box;
-  color: rgba(73, 73, 73, 0.5);
   font-weight: bold;
   display: flex;
   justify-content: space-evenly;
   list-style: none;
 
   .submenu {
-    background-color: #fff;
-    width: 50%;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
-    border-radius: 30px;
+    border-radius: 100%;
     border: none;
     margin-right: 10px;
     background-color: transparent;
   }
 
-  .focused {
+  .active {
+    border-radius: 30px;
     background-color: #f27622;
-    color: rgba(255, 255, 255, 1);
+    color: #fff;
     transition: 0.3s;
   }
 
