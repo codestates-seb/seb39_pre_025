@@ -38,7 +38,7 @@ const EditProfileBox = styled.div`
   width: 100%;
   height: 90%;
   display: flex;
-  align-items: top;
+  align-items: center;
 `;
 const ProfileImgandInfo = styled.div`
   display: flex;
@@ -46,4 +46,5 @@ const ProfileImgandInfo = styled.div`
   align-items: center;
   width: 250px;
   margin: 1rem;
+  margin-bottom: 200px; ;
 `;

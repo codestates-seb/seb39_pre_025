@@ -3,22 +3,15 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-// 저장된 회원 자기소개 나타내는 박스 입니다
-/**
- *
- * 화면 안뻗게 임시로 전체 게시글 get요청으로 넣었음 -> 추후 회원정보 수정 PUT 요청으로 사용자 정보 담아서 요청으로 바꾸기
- * 조건부렌더링 -> 데이터 받아오는거 db테이블? 백엔드랑 같이 확인하고 수정
- */
-
-function AboutProfileBox() {
+function UserQuestions() {
   const [myProfileList, setMyProfileList] = useState(null);
   const navigate = useNavigate();
 
   const getProfile = async () => {
-    const response = await axios.get('/mypage');
+    const response = await axios.get('/questions');
     console.log(response.data);
     // const temp = request.data.questions.filter((el) => el.writer === userId);
-    setMyProfileList(response.data.body);
+    setMyProfileList(response.data.questions);
   };
   const profileEditHandler = () => {
     navigate('/edit-mypage');
@@ -27,12 +20,15 @@ function AboutProfileBox() {
   useEffect(() => {
     getProfile();
   }, []);
-
   return (
-    <AboutProfileBoxLayout>
-      <ProfileEditButton type="submit" onClick={profileEditHandler}>
-        edit button
-      </ProfileEditButton>
+    <UserQuestionsLayout>
+      <UserQuestionsButton>
+        <button type="submit" onClick={profileEditHandler}>
+          edit button
+        </button>
+        <button type="button"> delete </button>
+      </UserQuestionsButton>
+
       <ProfileBox>
         {myProfileList !== undefined ? (
           myProfileList?.map((profile, idx) => {
@@ -56,18 +52,36 @@ function AboutProfileBox() {
           </div>
         )}
       </ProfileBox>
-    </AboutProfileBoxLayout>
+    </UserQuestionsLayout>
   );
 }
 
-export default AboutProfileBox;
-const AboutProfileBoxLayout = styled.div`
+export default UserQuestions;
+
+const UserQuestionsLayout = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 3rem;
+  margin: 1rem;
   align-items: flex-end;
+  & button {
+    margin: 5px;
+    width: 80px;
+    height: 30px;
+    background-color: #eee;
+    border-radius: 5px;
+    color: #078aff;
+    border: 1px solid #078aff;
+    cursor: pointer;
+  }
+  & button:hover {
+    background-color: #078aff;
+    color: #fff;
+  }
 `;
+const UserQuestionsButton = styled.div``;
+
 const ProfileBox = styled.div`
+  margin-left: 3rem;
   width: 500px;
   height: 300px;
   border-radius: 20px;
@@ -84,18 +98,4 @@ const ProfileTitle = styled.h2`
 const ProfileContent = styled.div`
   box-sizing: border-box;
   display: flex;
-`;
-const ProfileEditButton = styled.button`
-  margin: 10px;
-  width: 80px;
-  height: 30px;
-  background-color: #eee;
-  border-radius: 5px;
-  color: #078aff;
-  border: 1px solid #078aff;
-  cursor: pointer;
-  :hover {
-    background-color: #078aff;
-    color: #fff;
-  }
 `;
