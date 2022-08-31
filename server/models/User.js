@@ -18,17 +18,6 @@ const userSchema = mongoose.Schema({
   },
   password: {
     type: String,
-    minlength: 6,
-  },
-  role: {
-    // 어떤 유형의 사용자인지 숫자로 구분
-    // 기본값을 일반 유저로
-    type: Number,
-    default: 0,
-  },
-  photoURL: String,
-  token: {
-    type: String,
   },
   tokenExp: {
     type: Number,

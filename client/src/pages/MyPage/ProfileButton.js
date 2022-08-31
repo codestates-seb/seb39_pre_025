@@ -26,7 +26,7 @@ function ProfileButton() {
       <TabMenu>
         {menuArr.map(({ name, id, element }) => {
           return (
-            <NavLink to={element}>
+            <NavLink to={element} key={id}>
               <button
                 type="button"
                 key={id}

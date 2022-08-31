@@ -17,6 +17,7 @@ function Navbar() {
     setKeyword(event.target.value);
   };
   const handleSearchInput = async (event) => {
+    // * 검색어 제출버튼 온서브밋 핸들러
     // TODO: 키워드만 추려서 검색결과 들어가는지 확인
     // 쿼리 파라미터 제대로 안들어가고 있음.
     // 현재 검색 요청 시 url 상태: /questions?keyword=
@@ -57,7 +58,7 @@ function Navbar() {
           <label htmlFor="search">
             <input
               id="search"
-              value={keyword}
+              defaultValue={keyword}
               type="text"
               placeholder="Search..."
             />

@@ -6,10 +6,11 @@ import Question from './Question';
 
 function Questions() {
   const navigate = useNavigate();
-  const [questionsList, setQuestionsList] = useState(null);
+  const [questionsList, setQuestionsList] = useState([]);
   const fetchData = async () => {
     const response = await axios.get('/questions');
-    setQuestionsList(response.data);
+    console.log(response.data);
+    setQuestionsList(response.data.body);
   };
   useEffect(() => {
     fetchData();

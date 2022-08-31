@@ -19,7 +19,7 @@ function AsideMenubar() {
       <div>
         {asideMenuList.map(({ name, element, id }) => {
           return (
-            <AsideNavItem>
+            <AsideNavItem key={id}>
               <NavLink
                 to={element}
                 style={{

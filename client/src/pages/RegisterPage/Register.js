@@ -26,9 +26,9 @@ function Register() {
     if (userInfo.password === userInfo.confirmPassword) {
       await axios
         .post('/users/register', userInfo)
-        .then(() => navigate('/login'));
+        .then(() => navigate('/login'))
+        .catch((err) => alert(`${err}`));
     }
-    return alert('잘못된 입력입니다');
   };
 
   return (
