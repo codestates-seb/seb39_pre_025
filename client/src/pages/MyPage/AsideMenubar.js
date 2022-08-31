@@ -8,7 +8,7 @@ function AsideMenubar() {
     { id: 1, name: 'Questions', element: '/questions' },
     { id: 2, name: 'My Page', element: '/mypage' },
     { id: 3, name: 'Edit Profile', element: '/edit-mypage' },
-    { id: 4, name: 'My Questions', element: '/my-question' },
+    { id: 4, name: 'My Questions', element: '/user-question' },
   ];
   const asidemenuClickHandler = (id) => {
     setAsideMenuTap(id);
@@ -19,7 +19,7 @@ function AsideMenubar() {
       <div>
         {asideMenuList.map(({ name, element, id }) => {
           return (
-            <AsideNavItem>
+            <AsideNavItem key={id}>
               <NavLink
                 to={element}
                 style={{
