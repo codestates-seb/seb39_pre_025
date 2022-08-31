@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import { BackgroundLayout, GlobalStyle } from './GlobalStyle';
 import Questions from './pages/Questions/Questions';
 import EditProfilePage from './pages/MyPage/EditProfilePage';
+import UserQuestionPage from './pages/MyPage/UserQuestionPage/UserQuestionPage';
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/edit-mypage" element={<EditProfilePage />} />
-
+          <Route path="/user-question" element={<UserQuestionPage />} />
           <Route path="/add-question" element={<AddQuestion />} />
           <Route path="/edit-question" element={<EditQuestion />} />
           <Route path="/delete-question" element={<DeleteQuestion />} />

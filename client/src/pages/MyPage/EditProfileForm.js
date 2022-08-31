@@ -1,13 +1,28 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
+// toastify 설치 했습니다 npm i 해주세요
 
 function EditProfileForm() {
   const [profileTitle, setProfileTitle] = useState('');
   const [profileContent, setProfileContent] = useState('');
   const [editPassword, setEditPassword] = useState('');
   const [editName, setEditName] = useState('');
-
+  // 이미지 업로드 state
+  const defaultFileName = '새로운 프로필 업로드!';
+  const [file, setFile] = useState(null);
+  const [imgSrc, setImgSrc] = useState(null);
+  const [fileName, setFileName] = useState(defaultFileName);
+  // 이미지 업로드 로직
+  const imgSelectHandler = (e) => {
+    const imageFile = e.target.files[0];
+    setFile(imageFile);
+    setFileName(imageFile.name);
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(imageFile);
+    fileReader.onload = (event) => setImgSrc(event.target.result);
+  };
   const profileTitleHandler = (e) => {
     e.preventDefault();
     setProfileTitle(e.target.value);
@@ -29,20 +44,53 @@ function EditProfileForm() {
     e.preventDefault();
     console.log(profileTitle);
     console.log(profileContent);
-
+    const formData = new FormData();
+    formData.append('image', file);
     const body = {
+      image: imgSrc,
       name: editName,
       Password: editPassword,
       title: profileTitle,
       content: profileContent,
     };
-    axios
-      .post('/mypage/edit-profile', body)
-      .then((res) => console.log(res, body));
+    try {
+      axios
+        .put('/mypage/edit-profile', body)
+        .then((res) => console.log(res, body));
+      toast.success('업로드 완료');
+      setTimeout(() => {
+        setFileName(defaultFileName);
+        setImgSrc(null);
+      }, 3000);
+      // console.log(res);
+    } catch (err) {
+      toast.error(err.message);
+      setFileName(defaultFileName);
+      setImgSrc(null);
+    }
   };
   return (
     <EditProfileLayout>
       <form onSubmit={submitHandler}>
+        {/* 이미지 업로드 부분 입니다 */}
+        <label htmlFor="image" style={{ textAlign: 'center' }}>
+          Profile Image: {fileName}
+        </label>
+        <FileDropper>
+          <input
+            id="image"
+            type="file"
+            accept="image/*"
+            onChange={imgSelectHandler}
+          />
+          <PrevImgBox style={{ width: '500px' }}>
+            <img
+              src={imgSrc}
+              alt="upload-preview"
+              className={imgSrc && 'show'}
+            />
+          </PrevImgBox>
+        </FileDropper>
         <label htmlFor="name">
           Name
           <input
@@ -79,6 +127,7 @@ function EditProfileForm() {
           />
         </label>
         <button type="submit"> update </button>
+        <button type="button"> cancel </button>
       </form>
     </EditProfileLayout>
   );
@@ -90,7 +139,7 @@ const EditProfileLayout = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1rem;
-  width: 600px;
+  width: 500px;
   background-color: #fff;
   align-items: center;
   & input {
@@ -99,6 +148,52 @@ const EditProfileLayout = styled.div`
   }
   & textarea {
     width: 100%;
-    height: 300px;
+    height: 200px;
+  }
+`;
+
+const PrevImgBox = styled.div`
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    border-radius: 10px;
+    object-fit: fill;
+    width: 0%;
+    opacity: 0;
+
+    &.show {
+      opacity: 1;
+      width: 100%;
+      transition: 0.5s;
+    }
+  }
+`;
+const FileDropper = styled.div`
+  overflow: hidden;
+  border: 1px solid #000000;
+  width: 100%;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  :hover {
+    background-color: #bebebe;
+    transition: 0.5s;
+    color: #fff;
+  }
+
+  input {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
   }
 `;
