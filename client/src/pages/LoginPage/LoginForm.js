@@ -17,8 +17,9 @@ function LoginForm() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    axios.defaults.withCredentials = true;
     axios
-      .post('/users/login', userInfo)
+      .post('/login', userInfo)
       .then((response) => {
         const { loginStatus, userId } = response.data;
         localStorage.setItem('loginStatus', loginStatus);
