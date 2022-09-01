@@ -13,6 +13,7 @@ function Questions() {
   const fetchData = async () => {
     axios.defaults.withCredentials = true;
     const response = await axios.get('/questions');
+    console.log(response.data);
     setQuestionsList(response.data.questions);
   };
 
@@ -29,6 +30,7 @@ function Questions() {
       <QuestionsAside />
       <ContentBox>
         <div className="add-question-btn-section">
+          <span>All Questions</span>
           <button type="button" onClick={addQuestion}>
             Add Question
           </button>
@@ -60,12 +62,21 @@ const QuestionsLayout = styled.div`
   .add-question-btn-section {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    span {
+      font-size: 30px;
+    }
   }
 `;
 
 const ContentBox = styled.div`
   padding: 10px;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const QuestionsAside = styled(AsideMenubar)``;
