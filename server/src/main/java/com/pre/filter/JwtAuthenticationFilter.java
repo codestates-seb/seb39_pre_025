@@ -3,6 +3,7 @@ package com.pre.filter;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pre.dto.MemberRegisterDto;
 import com.pre.model.Member;
 import com.pre.oauth.PrincipalDetails;
 import java.io.IOException;
@@ -28,9 +29,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
             ObjectMapper om = new ObjectMapper();
-            Member member = om.readValue(request.getInputStream(), Member.class);
+            MemberRegisterDto memberRegisterDto = om.readValue(request.getInputStream(), MemberRegisterDto.class);
 
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(member.getEmail(), member.getPassword());
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(memberRegisterDto.getEmail(), memberRegisterDto.getPassword());
 
             Authentication authentication = authenticationManager.authenticate(authenticationToken);
 
