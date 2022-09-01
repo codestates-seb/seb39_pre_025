@@ -1,5 +1,6 @@
 package com.pre.oauth;
 
+import com.pre.dto.MemberRegisterDto;
 import com.pre.model.Member;
 import java.util.ArrayList;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.util.Collection;
 public class PrincipalDetails implements UserDetails {
 
     private Member member;
+    private MemberRegisterDto memberRegisterDto;
 
     public PrincipalDetails(Member member) {
         this.member = member;

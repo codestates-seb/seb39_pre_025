@@ -2,6 +2,9 @@ package com.pre.model;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -11,10 +14,15 @@ import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lombok.NoArgsConstructor;
 
 @Table(name = "Member")
 @Data
 @Entity
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+
 public class Member {
 
     @Id
@@ -27,11 +35,11 @@ public class Member {
 
     private String email;
 
-    private String title;
-
-    private String introduction;
-
-    private int profileImage;
+//    private String title;
+//
+//    private String introduction;
+//
+//    private int profileImage;
     private String roles; // User, MANAGER, ADMIN
 
     public List<String> getRoleList() {
