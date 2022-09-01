@@ -51,7 +51,7 @@ function AsideMenubar() {
 export default AsideMenubar;
 
 const AsideMenuBarLayout = styled.div`
-  width: 250px;
+  width: 180px;
   border-right: 3px solid #eee;
   box-sizing: border-box;
   margin: 10px;
