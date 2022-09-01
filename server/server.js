@@ -65,7 +65,7 @@ app.post('/users/register', (req, res) => {
   console.log(req.body);
   const user = new User({
     email: req.body.email,
-    userId: req.body.userId,
+    username: req.body.username,
     password: req.body.password,
     confirmPassword: req.body.confirmPassword,
   }); // 정의한 모델을 불러와 요청 안의 데이터로 새 인스턴스 생성
@@ -73,6 +73,7 @@ app.post('/users/register', (req, res) => {
     if (err) return res.json({ success: false, err });
     return res.status(200).json({
       success: true,
+      username: req.body.username,
     });
   });
   // save: 몽고디비의 메서드 - 콜백함수로 에러, 저장된 데이터를 매개변수로 받는다.
