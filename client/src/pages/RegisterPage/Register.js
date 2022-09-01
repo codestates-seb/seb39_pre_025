@@ -25,11 +25,11 @@ function Register() {
     e.preventDefault();
     if (userInfo.password === userInfo.confirmPassword) {
       const res = await axios.post('/users/register', userInfo);
-      if (res.data.success) {
-        const { username } = res.data;
-        localStorage.setItem('username', username);
-        navigate('/login');
-      }
+      console.log(res);
+      const { username } = res.data;
+      localStorage.setItem('username', username);
+      navigate('/login');
+
       // .then((res) => {
       //   console.log(res.data);
       //
