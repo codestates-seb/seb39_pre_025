@@ -14,7 +14,7 @@ function UserQuestions() {
     setMyProfileList(response.data.questions);
   };
   const profileEditHandler = () => {
-    navigate('/edit-mypage');
+    navigate('/edit-question');
   };
 
   useEffect(() => {
@@ -35,6 +35,7 @@ function UserQuestions() {
             return (
               <div key={Math.random()} idx={idx}>
                 <ProfileTitle>
+                  <input type="checkbox" />{' '}
                   <span style={{ fontSize: '18px', color: 'skyBlue' }}>
                     {profile.title}
                   </span>

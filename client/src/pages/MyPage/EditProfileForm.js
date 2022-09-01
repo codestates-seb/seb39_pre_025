@@ -144,7 +144,7 @@ const EditProfileLayout = styled.div`
   box-sizing: border-box;
   margin-left: 3rem;
   width: 400px;
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 15px;
   background-color: #fff;
   box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.2);
