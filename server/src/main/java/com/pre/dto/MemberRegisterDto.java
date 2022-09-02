@@ -23,8 +23,8 @@ public class MemberRegisterDto {
     @Size(min=2, message = "display name은 2자 이상이어야 합니다.")
     private String username;
 
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,30}$",
-        message = "비밀번호는 8~30 자리이면서 1개 이상의 알파벳, 숫자, 특수문자를 포함해야합니다.")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,30}$",
+        message = "비밀번호는 6~30 자리이면서 1개 이상의 알파벳, 숫자, 특수문자를 포함해야합니다.")
     private String password;
 
 
