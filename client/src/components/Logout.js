@@ -11,6 +11,8 @@ function Logout() {
     await axios.get('/users/logout');
     const loginStatus = false;
     localStorage.setItem('loginStatus', loginStatus);
+    const accessToken = '';
+    localStorage.setItem('accessToken', accessToken);
     return navigate('/');
   };
 
