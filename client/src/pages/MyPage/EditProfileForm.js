@@ -1,8 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { toast } from 'react-toastify';
-// toastify 설치 했습니다 npm i 해주세요
 
 function EditProfileForm() {
   const [profileTitle, setProfileTitle] = useState('');
@@ -43,7 +41,6 @@ function EditProfileForm() {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(profileTitle, profileContent, editPassword, editName, imgSrc);
-
     const formData = new FormData();
     formData.append('image', file);
     const body = {
@@ -58,14 +55,12 @@ function EditProfileForm() {
         .put('/mypage/edit-profile', body)
         .then((res) => console.log(res, body));
 
-      toast.success('업로드 완료');
       setTimeout(() => {
         setFileName(defaultFileName);
         setImgSrc(null);
       }, 3000);
       // console.log(res);
     } catch (err) {
-      toast.error(err.message);
       setFileName(defaultFileName);
       setImgSrc(null);
     }
