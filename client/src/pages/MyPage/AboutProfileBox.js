@@ -42,7 +42,7 @@ function AboutProfileBox() {
                   <span style={{ fontSize: '18px', color: 'skyBlue' }}>
                     {profile.title}
                   </span>
-                  {/* :<span style={{ fontSize: '14px' }}> {profile.content} </span> */}
+                  :<span style={{ fontSize: '14px' }}> {profile.content} </span>
                 </ProfileTitle>
               </div>
             );

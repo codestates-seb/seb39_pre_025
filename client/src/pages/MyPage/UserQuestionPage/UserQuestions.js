@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 function UserQuestions() {
@@ -10,8 +10,9 @@ function UserQuestions() {
   const getProfile = async () => {
     const response = await axios.get('/questions');
     console.log(response.data);
+    const questionList = response.data.questions;
     // const temp = request.data.questions.filter((el) => el.writer === userId);
-    setMyProfileList(response.data.questions);
+    setMyProfileList([...questionList]);
   };
   const profileEditHandler = () => {
     navigate('/edit-question');
@@ -31,15 +32,16 @@ function UserQuestions() {
 
       <ProfileBox>
         {myProfileList !== undefined ? (
-          myProfileList?.map((profile, idx) => {
+          myProfileList?.map((question, idx) => {
             return (
               <div key={Math.random()} idx={idx}>
                 <ProfileTitle>
-                  {' '}
-                  <input type="checkbox" />
-                  <span style={{ fontSize: '18px', color: 'skyBlue' }}>
-                    {profile.title}
-                  </span>
+                  <Link to={`/post/${question.PostNum}`}>
+                    <input type="checkbox" />
+                    <span style={{ fontSize: '18px', color: 'skyBlue' }}>
+                      {question.title}
+                    </span>
+                  </Link>
                   {/* :<span style={{ fontSize: '14px' }}> {profile.content} </span> */}
                 </ProfileTitle>
               </div>
