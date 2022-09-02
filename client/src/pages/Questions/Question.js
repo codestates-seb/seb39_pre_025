@@ -1,16 +1,35 @@
 // Question.js : 단건 게시글 컴포넌트
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
-function Question({ title, content, writer }) {
+function Question() {
+  const [question, setQuestion] = useState();
+  const params = useParams();
+  useEffect(() => {
+    const body = {
+      postNum: params.postNum,
+    };
+    axios.post('/questions/question', body).then((res) => {
+      const questionOne = res.data.body;
+      setQuestion(questionOne);
+    });
+  });
   return (
-    <QuestionLayout>
-      <Title>
-        <h3>{title}</h3>
-      </Title>
-      <Content>{content}</Content>
-      <Writer>{writer}</Writer>
-    </QuestionLayout>
+    <>
+      {question.map((questionOne, idx) => {
+        return (
+          <QuestionLayout key={{ idx }}>
+            <Title>
+              <h3>{questionOne.title}</h3>
+            </Title>
+            <Content>{questionOne.content}</Content>
+            <Writer>{questionOne.writer}</Writer>
+          </QuestionLayout>
+        );
+      })}
+    </>
   );
 }
 
