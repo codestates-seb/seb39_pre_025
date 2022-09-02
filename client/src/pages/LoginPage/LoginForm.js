@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -21,11 +22,14 @@ function LoginForm() {
     axios
       .post('/login', userInfo)
       .then((response) => {
-        const { loginStatus, userId } = response.data;
+        const accessToken = response.data.payload;
+        localStorage.setItem('accessToken', accessToken);
+        const loginStatus = true;
         localStorage.setItem('loginStatus', loginStatus);
-        localStorage.setItem('userId', userId);
-        if (loginStatus === false) return alert('로그인 실패!');
-        return navigate('/');
+        axios.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${accessToken}`;
+        navigate('/');
       })
       .catch((err) => console.log(`${err}`));
   };
