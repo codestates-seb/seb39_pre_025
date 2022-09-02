@@ -61,7 +61,6 @@ export default ProfileButton;
 
 const ProfileButtonLayout = styled.div`
   width: 100%;
-  background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;

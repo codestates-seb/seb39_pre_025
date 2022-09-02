@@ -64,12 +64,11 @@ export default AboutProfileBox;
 const AboutProfileBoxLayout = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 3rem;
   align-items: flex-end;
 `;
 const ProfileBox = styled.div`
-  width: 500px;
-  height: 300px;
+  width: 600px;
+  height: 400px;
   border-radius: 20px;
   box-shadow: 7px 8px 30px rgba(0, 0, 0, 0.2);
   overflow: scroll;

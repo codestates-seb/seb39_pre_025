@@ -52,9 +52,11 @@ export default AsideMenubar;
 
 const AsideMenuBarLayout = styled.div`
   width: 180px;
+  height: 100%;
   border-right: 3px solid #eee;
   box-sizing: border-box;
   margin: 10px;
+
   & h2 {
     box-sizing: border-box;
     font-size: 20px;

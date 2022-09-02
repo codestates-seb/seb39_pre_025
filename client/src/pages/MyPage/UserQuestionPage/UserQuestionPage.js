@@ -6,12 +6,8 @@ import UserQuestionList from './UserQuestionBox';
 function UserQuestionPage() {
   return (
     <UserQuestionPageLayout>
-      <div>
-        <AsideMenubar />
-      </div>
-      <div>
-        <UserQuestionList />
-      </div>
+      <AsideMenubar />
+      <UserQuestionList />
     </UserQuestionPageLayout>
   );
 }
@@ -19,7 +15,7 @@ function UserQuestionPage() {
 export default UserQuestionPage;
 
 const UserQuestionPageLayout = styled.div`
-  width: 1200px;
+  width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;

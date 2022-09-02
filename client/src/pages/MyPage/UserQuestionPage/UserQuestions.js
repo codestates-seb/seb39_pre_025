@@ -35,7 +35,8 @@ function UserQuestions() {
             return (
               <div key={Math.random()} idx={idx}>
                 <ProfileTitle>
-                  <input type="checkbox" />{' '}
+                  {' '}
+                  <input type="checkbox" />
                   <span style={{ fontSize: '18px', color: 'skyBlue' }}>
                     {profile.title}
                   </span>
@@ -83,8 +84,8 @@ const UserQuestionsButton = styled.div``;
 
 const ProfileBox = styled.div`
   margin-left: 3rem;
-  width: 500px;
-  height: 300px;
+  width: 600px;
+  height: 450px;
   border-radius: 20px;
   box-shadow: 7px 8px 30px rgba(0, 0, 0, 0.2);
   overflow: scroll;

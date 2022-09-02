@@ -7,7 +7,7 @@ import UserQuestions from './UserQuestions';
 function UserQuestionList() {
   return (
     <UserQuestionListLayout>
-      <div style={{ marginBottom: '200px' }}>
+      <div style={{ marginBottom: '400px' }}>
         <ProfileImage />
         <ProfileButton />
       </div>
@@ -21,6 +21,9 @@ function UserQuestionList() {
 export default UserQuestionList;
 
 const UserQuestionListLayout = styled.div`
+  width: 1200px;
+  height: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-around;
 `;

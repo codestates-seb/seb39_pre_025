@@ -7,12 +7,8 @@ import Profile from './Profile';
 function MyPage() {
   return (
     <MyPageLayout>
-      <div>
-        <AsideMenubar />
-      </div>
-      <div>
-        <Profile />
-      </div>
+      <AsideMenubar />
+      <Profile />
     </MyPageLayout>
   );
 }
@@ -20,9 +16,8 @@ function MyPage() {
 export default MyPage;
 
 const MyPageLayout = styled.div`
-  width: 1200px;
+  width: 100%;
   height: 100vh;
   display: flex;
-  flex-direction: row;
   align-items: center;
 `;

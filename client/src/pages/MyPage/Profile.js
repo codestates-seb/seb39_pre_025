@@ -23,10 +23,11 @@ function Profile() {
 
 export default Profile;
 const ProfileLayout = styled.div`
-  width: 100%;
+  width: 1200px;
   height: 100%;
   box-sizing: border-box;
   display: flex;
+  justify-content: space-evenly;
   flex-direction: row;
   align-items: center;
 `;
@@ -36,6 +37,5 @@ const ProfileImgandInfo = styled.div`
   flex-direction: column;
   align-items: center;
   width: 250px;
-  margin: 1rem;
-  margin-bottom: 200px;
+  margin-bottom: 400px;
 `;

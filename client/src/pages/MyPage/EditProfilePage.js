@@ -8,7 +8,7 @@ import AsideMenubar from './AsideMenubar';
 function EditProfilePage() {
   return (
     <EditProfileLayout>
-      <div>
+      <div style={{ height: '100%' }}>
         <AsideMenubar />
       </div>
       <EditProfileBox>
@@ -27,7 +27,7 @@ function EditProfilePage() {
 export default EditProfilePage;
 
 const EditProfileLayout = styled.div`
-  width: 1200px;
+  width: 100%;
   height: 100vh;
   box-sizing: border-box;
   display: flex;
@@ -35,9 +35,10 @@ const EditProfileLayout = styled.div`
   align-items: center;
 `;
 const EditProfileBox = styled.div`
-  width: 100%;
-  height: 90%;
+  width: 1200px;
+  height: 100%;
   display: flex;
+  justify-content: space-around;
   align-items: center;
 `;
 const ProfileImgandInfo = styled.div`
@@ -45,6 +46,5 @@ const ProfileImgandInfo = styled.div`
   flex-direction: column;
   align-items: center;
   width: 250px;
-  margin: 1rem;
-  margin-bottom: 200px; ;
+  margin-bottom: 400px; ;
 `;

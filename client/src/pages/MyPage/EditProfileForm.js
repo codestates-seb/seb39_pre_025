@@ -143,7 +143,7 @@ const EditProfileLayout = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   margin-left: 3rem;
-  width: 400px;
+  width: 500px;
   padding: 3rem;
   border-radius: 15px;
   background-color: #fff;
