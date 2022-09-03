@@ -24,10 +24,11 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://pre-1.cmybsu4mit3w.us-east-1.rds.amazonaws.com:3306/predatabase?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://pre-1.cmybsu4mit3w.us-east-1.rds.amazonaws.com:3306/sys?serverTimezone=Asia/Seoul
     username: admin
     password: 12345678
 
+#
 
 
 
