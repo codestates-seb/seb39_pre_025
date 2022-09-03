@@ -55,8 +55,6 @@ const AsideMenuBarLayout = styled.div`
   height: 100%;
   border-right: 3px solid #eee;
   box-sizing: border-box;
-  margin: 10px;
-
   & h2 {
     box-sizing: border-box;
     font-size: 20px;
@@ -69,13 +67,14 @@ const AsideMenuBarLayout = styled.div`
 `;
 const AsideNavItem = styled.ul`
   width: 100%;
-  height: 35px;
+  height: auto;
   box-sizing: border-box;
   color: rgba(73, 73, 73, 0.5);
   font-weight: bold;
   display: flex;
   justify-content: space-evenly;
   list-style: none;
+  font-size: 1rem;
   .submenu {
     background-color: transparent;
     font-weight: 300;
@@ -86,7 +85,7 @@ const AsideNavItem = styled.ul`
   .active {
     background-color: #eff0f1;
     border-right: 2px solid #f27622;
-    font-weight: 800;
+    font-weight: 900;
     transition: 0.3s;
   }
   & div.desc {

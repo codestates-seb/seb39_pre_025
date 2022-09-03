@@ -45,6 +45,6 @@ const ProfileImgandInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 250px;
-  margin-bottom: 400px; ;
+  width: 300px;
+  margin-bottom: 400px;
 `;

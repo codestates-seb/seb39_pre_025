@@ -7,7 +7,10 @@ import Profile from './Profile';
 function MyPage() {
   return (
     <MyPageLayout>
-      <AsideMenubar />
+      <div style={{ width: '180px', height: '100%' }}>
+        <AsideMenubar />
+      </div>
+
       <Profile />
     </MyPageLayout>
   );
