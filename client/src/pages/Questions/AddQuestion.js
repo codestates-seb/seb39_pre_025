@@ -20,7 +20,6 @@ function AddQuestion() {
   };
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(data);
     axios
       .post('/questions', data)
       .then(() => {

@@ -25,12 +25,13 @@ function Register() {
     e.preventDefault();
     if (userInfo.password === userInfo.confirmPassword) {
       const res = await axios.post('/users/register', userInfo);
-      if (res.status === 200) {
-        const { username } = res.data;
-        localStorage.setItem('username', username);
-        return navigate('/login');
-      }
+      console.log(res);
+      // if (res.status === '200') {
+      // const { username } = res.data;
+      // localStorage.setItem('username', username);
+      return navigate('/login');
     }
+
     return alert('화원가입에 실패하였습니다. 입력한 정보를 확인해주세요');
   };
 

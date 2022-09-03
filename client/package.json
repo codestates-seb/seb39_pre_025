@@ -12,6 +12,7 @@
     "axios": "^0.27.2",
     "eslint-plugin-async-await": "^0.0.0",
     "express-async-handler": "^1.2.0",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
@@ -55,5 +56,5 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6"
   },
-  "proxy": "https://f6ea-49-169-198-207.jp.ngrok.io"
+  "proxy": "http://localhost:5000"
 }

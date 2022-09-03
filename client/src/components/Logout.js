@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -8,11 +8,13 @@ function Logout() {
 
   const handleLogout = async (e) => {
     e.preventDefault();
-    await axios.get('/users/logout');
+    // await axios.get('/users/logout');
     const loginStatus = false;
     localStorage.setItem('loginStatus', loginStatus);
     const accessToken = '';
     localStorage.setItem('accessToken', accessToken);
+    const username = '';
+    localStorage.setItem('username', username);
     return navigate('/');
   };
 

@@ -13,6 +13,7 @@ import Questions from './pages/Questions/Questions';
 import EditProfilePage from './pages/MyPage/EditProfilePage';
 import UserQuestionPage from './pages/MyPage/UserQuestionPage/UserQuestionPage';
 import EditQuestionPage from './pages/MyPage/UserQuestionPage/EditQuestionPage';
+import Question from './pages/Questions/Question';
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/questions" element={<Questions />} />
+          <Route path="/questions/:questionIdx" element={<Question />} />
+          <Route path="/questions/edit/:questionIdx" element={<Question />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/mypage" element={<MyPage />} />
