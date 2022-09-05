@@ -51,19 +51,21 @@ function Questions() {
                 <UserIDBox>
                   <div className="author">userID{question.id} </div>
                 </UserIDBox>
-                <Link to={`/questions/${question.id}`}>
-                  <TitleBox>
-                    <h3 className="title">{question.title}</h3>
-                  </TitleBox>
-                  <ContentBox>
-                    <pre>{question.content}</pre>
-                  </ContentBox>
-                  <PostedInfoBox>
-                    <div className="date">
-                      {SetTime(question.regdate, question.updatedate)}
-                    </div>
-                  </PostedInfoBox>
-                </Link>
+                <QuestionListBox>
+                  <Link to={`/questions/${question.id}`}>
+                    <TitleBox>
+                      <h3 className="title">{question.title}</h3>
+                    </TitleBox>
+                    <ContentBox>
+                      <pre>{question.content}</pre>
+                    </ContentBox>
+                    <PostedInfoBox>
+                      <span className="date">
+                        {SetTime(question.regdate, question.updatedate)}
+                      </span>
+                    </PostedInfoBox>
+                  </Link>
+                </QuestionListBox>
               </ListItem>
             );
           })}
@@ -78,17 +80,21 @@ export default Questions;
 const QuestionsLayout = styled.div`
   display: flex;
   width: 100%;
-  height: 90vh;
+  height: 100%;
   box-sizing: border-box;
 
   .add-question-btn-section {
+    margin-top: 1rem;
     width: 100%;
     display: flex;
+    padding: 10px;
+    box-sizing: border-box;
     justify-content: space-between;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 
     span {
-      font-size: 30px;
+      font-size: 2rem;
+      margin-top: 1rem;
     }
   }
 `;
@@ -96,12 +102,13 @@ const QuestionsLayout = styled.div`
 const TitleBox = styled.div`
   cursor: pointer;
   font-size: 0.9rem;
-  color: #54a0ff;
+  color: #54a0ff;s
 `;
 
 const ContentBox = styled.div`
-  width: 80vw;
-  display: flex;
+  width: 100%;
+  max-width: 900px;
+  overflow: auto;
   flex-direction: column;
 
   & button {
@@ -131,20 +138,29 @@ const ListItem = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+
   /* margin-bottom: 30px; */
   a {
     text-decoration: none;
     color: #000;
   }
 `;
+const QuestionListBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 const UserIDBox = styled.div`
   padding: 2rem;
   font-size: 1rem;
 `;
 const PostedInfoBox = styled.div`
-  width: 85%;
+  width: 100%;
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
+
   .date {
     color: gray;
     font-size: 13px;
