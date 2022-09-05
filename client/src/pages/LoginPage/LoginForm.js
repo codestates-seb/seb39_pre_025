@@ -22,7 +22,6 @@ function LoginForm() {
     axios
       .post('/login', userInfo)
       .then((response) => {
-        console.log(response);
         const accessToken = response.headers.authorization;
         localStorage.setItem('accessToken', accessToken);
         const loginStatus = true;
