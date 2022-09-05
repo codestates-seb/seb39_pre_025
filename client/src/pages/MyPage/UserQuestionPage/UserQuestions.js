@@ -1,60 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
+import 'moment/locale/ko';
 
 function UserQuestions() {
-  const [myProfileList, setMyProfileList] = useState(null);
-  const navigate = useNavigate();
+  const [questionsList, setQuestionsList] = useState([]);
 
-  const getProfile = async () => {
+  const fetchData = async () => {
+    axios.defaults.withCredentials = true;
     const response = await axios.get('/questions');
     console.log(response.data);
-    const questionList = response.data.questions;
-    // const temp = request.data.questions.filter((el) => el.writer === userId);
-    setMyProfileList([...questionList]);
-  };
-  const profileEditHandler = () => {
-    navigate('/edit-question');
+
+    setQuestionsList(
+      response.data.questions.filter(
+        (el) => el.writer === localStorage.username,
+      ),
+    );
   };
 
   useEffect(() => {
-    getProfile();
+    fetchData();
   }, []);
+
+  const SetTime = (a, b) => {
+    if (a !== b) {
+      return moment(b).format('YYYY년 MMMM Do, hh:mm');
+    }
+    return moment(a).format('YYYY년 MMMM Do, hh:mm');
+  };
+
   return (
     <UserQuestionsLayout>
       <UserQuestionsButton>
-        <button type="submit" onClick={profileEditHandler}>
-          edit button
-        </button>
+        <button type="submit">edit button</button>
         <button type="button"> delete </button>
       </UserQuestionsButton>
 
       <ProfileBox>
-        {myProfileList !== undefined ? (
-          myProfileList?.map((question, idx) => {
-            return (
-              <div key={Math.random()} idx={idx}>
-                <ProfileTitle>
-                  <Link to={`/post/${question.PostNum}`}>
-                    <input type="checkbox" />
-                    <span style={{ fontSize: '18px', color: 'skyBlue' }}>
-                      {question.title}
-                    </span>
-                  </Link>
-                  {/* :<span style={{ fontSize: '14px' }}> {profile.content} </span> */}
-                </ProfileTitle>
-              </div>
-            );
-          })
-        ) : (
-          <div>
-            <ProfileTitle>자기소개를 작성 하세요</ProfileTitle>
-            <ProfileContent>
-              상단 Edit button 을 눌러 개성있는 나의 소개글을 작성 해 보세요
-            </ProfileContent>
-          </div>
-        )}
+        {questionsList?.map((question, idx) => {
+          return (
+            <ListItem key={Math.random()} value={idx}>
+              <Link to={`/questions/${question.questionIdx}`}>
+                <TitleBox>
+                  <h3 className="title">{question.title}</h3>
+                </TitleBox>
+                <ContentBox>
+                  <pre>{question.content}</pre>
+                </ContentBox>
+                <PostedInfoBox>
+                  <div className="author">{question.writer}</div>
+                  <div className="date">
+                    {SetTime(question.regdate, question.updatedate)}
+                  </div>
+                </PostedInfoBox>
+              </Link>
+            </ListItem>
+          );
+        })}
       </ProfileBox>
     </UserQuestionsLayout>
   );
@@ -95,11 +99,51 @@ const ProfileBox = styled.div`
   box-sizing: border-box;
   padding: 1rem;
 `;
-const ProfileTitle = styled.h2`
-  text-align: left;
+// const ProfileTitle = styled.h2`
+//   text-align: left;
+// `;
+
+// const ProfileContent = styled.div`
+//   box-sizing: border-box;
+//   display: flex;
+// `;
+const ListItem = styled.div`
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 80vw;
+  margin-bottom: 30px;
+
+  a {
+    text-decoration: none;
+    color: #000000;
+  }
 `;
 
-const ProfileContent = styled.div`
-  box-sizing: border-box;
+const TitleBox = styled.div`
+  cursor: pointer;
+  color: blueviolet;
+`;
+
+const ContentBox = styled.div`
+  padding: 10px;
+  width: 80vw;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const PostedInfoBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  line-height: 1;
+
+  .author {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  .date {
+    color: gray;
+    font-size: 13px;
+  }
 `;

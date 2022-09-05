@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+// import ToastEditor from '../../components/ToastEditor';
 
 axios.defaults.withCredentials = true;
 
@@ -20,7 +21,6 @@ function AddQuestion() {
   };
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(data);
     axios
       .post('/questions', data)
       .then(() => {
@@ -33,6 +33,7 @@ function AddQuestion() {
   return (
     <div>
       <form action="" onChange={onChange} onSubmit={onSubmit}>
+        {/* <ToastEditor /> */}
         <div>
           <label htmlFor="title">
             제목

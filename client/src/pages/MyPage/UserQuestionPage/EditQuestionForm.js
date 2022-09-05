@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
-function EditQuestionForm() {
+function EditQuestionForm({ questionIdx }) {
   const [data, setData] = useState({
-    board_id: '',
+    board_id: questionIdx, // DB 테이블에 맞게 최신화 필요
     writer: '',
     title: '',
     content: '',
@@ -22,11 +22,7 @@ function EditQuestionForm() {
   const onSubmit = (event) => {
     event.preventDefault();
     axios
-      .put('/questions', {
-        data: {
-          ...data,
-        },
-      })
+      .put(`/questions/${questionIdx}`, data)
       .then((res) => {
         console.log(res.data);
       })
