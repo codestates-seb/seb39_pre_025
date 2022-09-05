@@ -1,30 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { useParams, useNavigate } from 'react-router-dom';
 
-function EditQuestionForm({ boardId }) {
-  const [data, setData] = useState({
-    boardId, // DB 테이블에 맞게 최신화 필요
-    writer: '',
-    title: '',
-    content: '',
-    regdate: '',
-    updatedate: '',
-    member: '',
+function EditQuestionForm() {
+  const navigate = useNavigate();
+  const params = useParams();
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    const body = {
+      boardId: params.boardId,
+    };
+    axios.get(`/questions/${params.boardId}`, body).then((res) => {
+      setData(res.data);
+    });
   });
+
   const onChange = (event) => {
+    console.log(event.target.value);
     const { name, value } = event.target;
     setData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
-  const onSubmit = (event) => {
-    event.preventDefault();
+
+  // axio put 만들어야함
+
+  const onSubmit = (e) => {
+    e.preventDefault();
     axios
-      .put(`/questions/${boardId}`, data)
+      .put(`/questions/${params.boardId}`, data)
       .then((res) => {
         console.log(res.data);
+        navigate('/questions');
       })
       .catch((err) => console.log(`${err}`));
   };
@@ -42,13 +52,23 @@ function EditQuestionForm({ boardId }) {
           <div>
             <label htmlFor="title">
               Title
-              <input type="text" id="title" name="title" />
+              <input
+                type="title"
+                id="title"
+                name="title"
+                defaultValue={data.title}
+              />
             </label>
           </div>
           <div>
             <label htmlFor="content">
               Content
-              <textarea type="text" id="content" name="content" />
+              <textarea
+                type="text"
+                id="content"
+                name="content"
+                defaultValue={data.content}
+              />
             </label>
           </div>
           <input
