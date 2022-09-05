@@ -27,9 +27,9 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/questions" element={<Questions />} />
           {/* 게시글 단건 조회 */}
-          <Route path="/questions/:questionIdx" element={<Question />} />
+          <Route path="/questions/:boardId" element={<Question />} />
           {/* 게시글 수정 */}
-          <Route path="/questions/edit/:questionIdx" element={<Question />} />
+          <Route path="/questions/edit/:boardId" element={<Question />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/mypage" element={<MyPage />} />
