@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-
 import styled from 'styled-components';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function ProfileButton() {
   const [currentTab, setCurrentTab] = useState(0);
@@ -11,14 +10,6 @@ function ProfileButton() {
   ];
   const selectMenuHandler = (id) => {
     setCurrentTab(id);
-  };
-  const navigate = useNavigate();
-
-  const editMyProfile = () => {
-    navigate('/edit-mypage');
-  };
-  const deleteMyAccount = () => {
-    navigate('/delete-account');
   };
 
   return (
@@ -42,15 +33,11 @@ function ProfileButton() {
 
       <PersonalInFoBox>
         <h3>PERSONAL INFORMATION</h3>
-        <NavLink to="edit-mypage">
-          <button type="button" onClick={editMyProfile}>
-            Edit Profile
-          </button>
+        <NavLink to="/edit-mypage">
+          <button type="button">Edit Profile</button>
         </NavLink>
-        <NavLink to="delete-acccount">
-          <button type="button" onClick={deleteMyAccount}>
-            Delete Account
-          </button>
+        <NavLink to="/delete-account">
+          <button type="button">Delete Account</button>
         </NavLink>
       </PersonalInFoBox>
     </ProfileButtonLayout>

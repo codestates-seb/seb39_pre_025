@@ -22,7 +22,8 @@ function LoginForm() {
     axios
       .post('/login', userInfo)
       .then((response) => {
-        const accessToken = response.data.payload;
+        console.log(response);
+        const accessToken = response.headers.authorization;
         localStorage.setItem('accessToken', accessToken);
         const loginStatus = true;
         localStorage.setItem('loginStatus', loginStatus);

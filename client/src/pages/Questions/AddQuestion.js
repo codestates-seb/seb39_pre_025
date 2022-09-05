@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import ToastEditor from '../../components/ToastEditor';
 
 axios.defaults.withCredentials = true;
 
@@ -43,6 +44,7 @@ function AddQuestion() {
         <div>
           <label htmlFor="content">
             내용
+            <ToastEditor />
             <textarea type="text" id="content" name="content" />
           </label>
         </div>
