@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import EditQuestionPage from '../MyPage/UserQuestionPage/EditQuestionPage';
 
-function Question({ questionIdx }) {
+function Question() {
   const [isOpen, setIsOpen] = useState();
   const navigate = useNavigate();
   const [data, setData] = useState({});
