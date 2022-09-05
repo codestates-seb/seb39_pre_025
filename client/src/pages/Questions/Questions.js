@@ -48,20 +48,24 @@ function Questions() {
           {questionsList?.map((question, idx) => {
             return (
               <ListItem key={Math.random()} value={idx}>
-                <Link to={`/questions/${question.id}`}>
-                  <TitleBox>
-                    <h3 className="title">{question.title}</h3>
-                  </TitleBox>
-                  <ContentBox>
-                    <pre>{question.content}</pre>
-                  </ContentBox>
-                  <PostedInfoBox>
-                    <div className="author">{question.writer}</div>
-                    <div className="date">
-                      {SetTime(question.regdate, question.updatedate)}
-                    </div>
-                  </PostedInfoBox>
-                </Link>
+                <UserIDBox>
+                  <div className="author">userID{question.id} </div>
+                </UserIDBox>
+                <QuestionListBox>
+                  <Link to={`/questions/${question.id}`}>
+                    <TitleBox>
+                      <h3 className="title">{question.title}</h3>
+                    </TitleBox>
+                    <ContentBox>
+                      <pre>{question.content}</pre>
+                    </ContentBox>
+                    <PostedInfoBox>
+                      <span className="date">
+                        {SetTime(question.regdate, question.updatedate)}
+                      </span>
+                    </PostedInfoBox>
+                  </Link>
+                </QuestionListBox>
               </ListItem>
             );
           })}
@@ -76,30 +80,51 @@ export default Questions;
 const QuestionsLayout = styled.div`
   display: flex;
   width: 100%;
-  height: 90vh;
+  height: 100%;
+  box-sizing: border-box;
+
   .add-question-btn-section {
+    margin-top: 1rem;
     width: 100%;
     display: flex;
+    padding: 10px;
+    box-sizing: border-box;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 3rem;
 
     span {
-      font-size: 30px;
+      font-size: 2rem;
+      margin-top: 1rem;
     }
   }
 `;
 
 const TitleBox = styled.div`
   cursor: pointer;
-  color: blueviolet;
+  font-size: 0.9rem;
+  color: #54a0ff;s
 `;
 
 const ContentBox = styled.div`
-  padding: 10px;
-  width: 80vw;
-  display: flex;
+  width: 100%;
+  max-width: 900px;
+  overflow: auto;
   flex-direction: column;
-  align-items: center;
+
+  & button {
+    width: 80px;
+    height: 40px;
+    margin: 0 5px;
+    border: 0.1px solid #54a0ff;
+    border-radius: 5px;
+    transition: all 0.9s;
+    background-color: #54a0ff;
+    color: #fff;
+    cursor: pointer;
+    :hover {
+      box-shadow: 200px 0 0 0 rgba(0, 0, 0, 0.2) inset;
+    }
+  }
 `;
 
 const QuestionsAside = styled(AsideMenubar)``;
@@ -107,27 +132,35 @@ const QuestionsAside = styled(AsideMenubar)``;
 const QuestionList = styled.section``;
 
 const ListItem = styled.div`
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  width: 80vw;
-  margin-bottom: 30px;
+  border-top: 1.5px solid #eee;
+  border-bottom: 1.5px solid #eee;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
 
+  /* margin-bottom: 30px; */
   a {
     text-decoration: none;
-    color: #000000;
+    color: #000;
   }
 `;
-
+const QuestionListBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+const UserIDBox = styled.div`
+  padding: 2rem;
+  font-size: 1rem;
+`;
 const PostedInfoBox = styled.div`
+  width: 100%;
   display: flex;
   justify-content: flex-end;
-  padding: 10px;
-  line-height: 1;
 
-  .author {
-    margin-right: 10px;
-    font-weight: bold;
-  }
   .date {
     color: gray;
     font-size: 13px;
