@@ -24,7 +24,10 @@ function Register() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post('/users/register', userInfo);
+    const res = await axios.post(
+      'http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/users/register',
+      userInfo,
+    );
     console.log(res);
     // if (res.status === '200') {
     // const { username } = res.data;

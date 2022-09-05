@@ -12,9 +12,14 @@ function EditQuestionForm() {
     const body = {
       boardId: params.boardId,
     };
-    axios.get(`/questions/${params.boardId}`, body).then((res) => {
-      setData(res.data);
-    });
+    axios
+      .get(
+        `http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/questions/${params.boardId}`,
+        body,
+      )
+      .then((res) => {
+        setData(res.data);
+      });
   }, []);
 
   const onChange = (event) => {

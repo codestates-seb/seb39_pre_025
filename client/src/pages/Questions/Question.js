@@ -11,7 +11,10 @@ function Question() {
       boardId: params.boardId,
     };
     axios
-      .get(`/questions/${params.boardId}`, body)
+      .get(
+        `http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/questions/${params.boardId}`,
+        body,
+      )
       .then((response) => {
         setData(response.data);
       })

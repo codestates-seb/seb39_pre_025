@@ -24,7 +24,10 @@ function AddQuestion() {
     event.preventDefault();
 
     axios
-      .post('/questions', data)
+      .post(
+        'http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/questions',
+        data,
+      )
       .then(() => {
         alert(`Successfully posted!`);
         navigate('/questions');

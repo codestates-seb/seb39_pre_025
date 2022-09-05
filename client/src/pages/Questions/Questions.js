@@ -14,7 +14,9 @@ function Questions() {
 
   const fetchData = async () => {
     axios.defaults.withCredentials = true;
-    const response = await axios.get('/questions');
+    const response = await axios.get(
+      'http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/questions',
+    );
     console.log(response.data.content);
     setQuestionsList(response.data.content);
   };
