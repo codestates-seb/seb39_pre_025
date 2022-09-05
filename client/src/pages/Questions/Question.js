@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 // import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import EditQuestionPage from '../MyPage/UserQuestionPage/EditQuestionPage';
 
 function Question({ questionIdx }) {
+  const [isOpen, setIsOpen] = useState();
+  const navigate = useNavigate();
   const [data, setData] = useState({});
   const params = useParams();
   useEffect(() => {
@@ -13,20 +16,35 @@ function Question({ questionIdx }) {
     axios
       .post(`/questions/${questionIdx}`, body)
       .then((response) => {
-        setData(response.data.question);
+        setData(response.data);
       })
       .catch((err) => {
         console.log(`${err}`);
       });
   }, []);
 
-  const handleEditBtn = () => {};
-  const handleDeleteBtn = () => {};
+  // * 게시글 수정
+  const handleEditBtn = () => {
+    setIsOpen(!isOpen);
+  };
+  // * 게시글 삭제
+
+  const handleDeleteBtn = (e) => {
+    e.preventDefault();
+    if (window.confirm('정말로 삭제하시겠습니까?')) {
+      axios.delete(`/questions/${questionIdx}`, data);
+    }
+    return navigate('/questions');
+  };
   return (
     <div>
-      <button type="button" onClick={handleEditBtn}>
-        Edit
-      </button>
+      {isOpen ? (
+        <EditQuestionPage questionIdx={questionIdx} />
+      ) : (
+        <button type="button" onClick={handleEditBtn}>
+          Edit
+        </button>
+      )}
       <button type="button" onClick={handleDeleteBtn}>
         Delete
       </button>

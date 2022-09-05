@@ -23,7 +23,7 @@ function LoginForm() {
       .post('/login', userInfo)
       .then((response) => {
         console.log(response);
-        const accessToken = response.data.payload;
+        const accessToken = response.headers.authorization;
         localStorage.setItem('accessToken', accessToken);
         const loginStatus = true;
         localStorage.setItem('loginStatus', loginStatus);
