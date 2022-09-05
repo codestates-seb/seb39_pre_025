@@ -9,8 +9,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@reduxjs/toolkit": "^1.8.5",
-    "@toast-ui/editor": "^3.2.0",
-    "@toast-ui/react-editor": "^3.2.0",
     "axios": "^0.27.2",
     "eslint-plugin-async-await": "^0.0.0",
     "express-async-handler": "^1.2.0",
