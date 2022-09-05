@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import EditQuestionForm from './EditQuestionForm';
 
-function EditQuestionPage({ questionIdx }) {
+function EditQuestionPage({ boardId }) {
   return (
     <EditQuestionPageLayout>
-      <EditQuestionForm questionIdx={questionIdx} />
+      <EditQuestionForm boardId={boardId} />
     </EditQuestionPageLayout>
   );
 }

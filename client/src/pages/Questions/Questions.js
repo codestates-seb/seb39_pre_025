@@ -14,9 +14,9 @@ function Questions() {
 
   const fetchData = async () => {
     axios.defaults.withCredentials = true;
-    const response = await axios.get('/frontquestions');
-    console.log(response.data);
-    setQuestionsList(response.data);
+    const response = await axios.get('/questions');
+    console.log(response.data.content);
+    setQuestionsList(response.data.content);
   };
 
   useEffect(() => {
@@ -48,7 +48,7 @@ function Questions() {
           {questionsList?.map((question, idx) => {
             return (
               <ListItem key={Math.random()} value={idx}>
-                <Link to={`/questions/${question.questionIdx}`}>
+                <Link to={`/questions/${question.id}`}>
                   <TitleBox>
                     <h3 className="title">{question.title}</h3>
                   </TitleBox>
