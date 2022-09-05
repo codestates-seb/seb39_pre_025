@@ -9,7 +9,11 @@ import Questions from '../Questions/Questions';
 function LandingPage() {
   return (
     <div>
-      <Questions />
+      {localStorage.loginStatus === 'true' ? (
+        <Questions />
+      ) : (
+        <div>랜딩페이지</div>
+      )}
     </div>
   );
 }
