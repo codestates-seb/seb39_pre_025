@@ -15,7 +15,6 @@ function Question() {
       .get(`/questions/${params.boardId}`, body)
       .then((response) => {
         setData(response.data);
-        console.log(params.boardId);
       })
       .catch((err) => {
         console.log(`${err}`);

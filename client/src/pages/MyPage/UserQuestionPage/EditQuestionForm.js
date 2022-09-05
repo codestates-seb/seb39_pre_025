@@ -15,10 +15,9 @@ function EditQuestionForm() {
     axios.get(`/questions/${params.boardId}`, body).then((res) => {
       setData(res.data);
     });
-  });
+  }, []);
 
   const onChange = (event) => {
-    console.log(event.target.value);
     const { name, value } = event.target;
     setData((prev) => ({
       ...prev,
@@ -31,7 +30,7 @@ function EditQuestionForm() {
   const onSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`/questions/${params.boardId}`, data)
+      .patch(`/questions/${params.boardId}`, data)
       .then((res) => {
         console.log(res.data);
         navigate('/questions');
