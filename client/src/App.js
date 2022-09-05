@@ -41,7 +41,10 @@ function App() {
             path="/edit-question/:boardId"
             element={<EditQuestionPage />}
           />
-          <Route path="/delete-question" element={<DeleteQuestion />} />
+          <Route
+            path="/delete-question/:boardId"
+            element={<DeleteQuestion />}
+          />
         </Routes>
       </BackgroundLayout>
       <Footer />
