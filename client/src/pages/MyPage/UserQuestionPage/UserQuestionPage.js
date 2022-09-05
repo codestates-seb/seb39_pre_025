@@ -6,7 +6,10 @@ import UserQuestionList from './UserQuestionBox';
 function UserQuestionPage() {
   return (
     <UserQuestionPageLayout>
-      <AsideMenubar />
+      <div style={{ width: '180px', height: '100%' }}>
+        <AsideMenubar />
+      </div>
+
       <UserQuestionList />
     </UserQuestionPageLayout>
   );

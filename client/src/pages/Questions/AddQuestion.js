@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-// import ToastEditor from '../../components/ToastEditor';
+import ToastEditor from '../../components/ToastEditor';
 
 axios.defaults.withCredentials = true;
 
 function AddQuestion() {
   const navigate = useNavigate();
+
   const [data, setData] = useState({
     writer: localStorage.username,
     title: '',
@@ -21,6 +22,7 @@ function AddQuestion() {
   };
   const onSubmit = (event) => {
     event.preventDefault();
+
     axios
       .post('/questions', data)
       .then(() => {
@@ -33,7 +35,6 @@ function AddQuestion() {
   return (
     <div>
       <form action="" onChange={onChange} onSubmit={onSubmit}>
-        {/* <ToastEditor /> */}
         <div>
           <label htmlFor="title">
             제목
@@ -43,6 +44,7 @@ function AddQuestion() {
         <div>
           <label htmlFor="content">
             내용
+            <ToastEditor />
             <textarea type="text" id="content" name="content" />
           </label>
         </div>

@@ -7,7 +7,12 @@ import UserQuestions from './UserQuestions';
 function UserQuestionList() {
   return (
     <UserQuestionListLayout>
-      <div style={{ marginBottom: '400px' }}>
+      <div
+        style={{
+          marginBottom: '400px',
+          width: '300px',
+        }}
+      >
         <ProfileImage />
         <ProfileButton />
       </div>

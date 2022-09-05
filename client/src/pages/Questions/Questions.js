@@ -14,9 +14,9 @@ function Questions() {
 
   const fetchData = async () => {
     axios.defaults.withCredentials = true;
-    const response = await axios.get('/questions');
+    const response = await axios.get('/frontquestions');
     console.log(response.data);
-    setQuestionsList(response.data.questions);
+    setQuestionsList(response.data);
   };
 
   useEffect(() => {

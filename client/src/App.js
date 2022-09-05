@@ -14,6 +14,7 @@ import EditProfilePage from './pages/MyPage/EditProfilePage';
 import UserQuestionPage from './pages/MyPage/UserQuestionPage/UserQuestionPage';
 import EditQuestionPage from './pages/MyPage/UserQuestionPage/EditQuestionPage';
 import Question from './pages/Questions/Question';
+import DeleteProfile from './pages/MyPage/DeleteProfile';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/edit-mypage" element={<EditProfilePage />} />
+          <Route path="/delete-account" element={<DeleteProfile />} />
           <Route path="/user-question" element={<UserQuestionPage />} />
           <Route path="/add-question" element={<AddQuestion />} />
           <Route path="/edit-question" element={<EditQuestionPage />} />
