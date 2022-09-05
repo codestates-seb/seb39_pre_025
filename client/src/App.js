@@ -37,7 +37,10 @@ function App() {
           <Route path="/delete-account" element={<DeleteProfile />} />
           <Route path="/user-question" element={<UserQuestionPage />} />
           <Route path="/add-question" element={<AddQuestion />} />
-          <Route path="/edit-question" element={<EditQuestionPage />} />
+          <Route
+            path="/edit-question/:boardId"
+            element={<EditQuestionPage />}
+          />
           <Route path="/delete-question" element={<DeleteQuestion />} />
         </Routes>
       </BackgroundLayout>
