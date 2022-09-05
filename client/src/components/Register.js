@@ -4,12 +4,11 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 function Register() {
-  axios.defaults.withCredentials = true;
   const navigate = useNavigate();
 
   const [userInfo, setuserInfo] = useState({
     email: '',
-    username: '',
+    userId: '',
     password: '',
     confirmPassword: '',
   });
@@ -24,17 +23,12 @@ function Register() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post(
-      'http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/users/register',
-      userInfo,
-    );
-    console.log(res);
-    // if (res.status === '200') {
-    // const { username } = res.data;
-    // localStorage.setItem('username', username);
-    return navigate('/login');
-
-    // return alert('화원가입에 실패하였습니다. 입력한 정보를 확인해주세요');
+    if (userInfo.password === userInfo.confirmPassword) {
+      await axios
+        .post('/users/register', userInfo)
+        .then(() => navigate('/login'));
+    }
+    return alert('잘못된 입력입니다');
   };
 
   return (
@@ -42,7 +36,7 @@ function Register() {
       <form htmlFor="register" onSubmit={onSubmit} onChange={onChange}>
         <label htmlFor="user-id">
           Display Name <br />
-          <input id="user-id" name="username" type="text" />
+          <input id="user-id" name="userId" type="text" />
         </label>
         <label htmlFor="email">
           Email <br />
@@ -82,9 +76,7 @@ const RegisterLayout = styled.div`
   & form {
     display: flex;
     flex-direction: column;
-
     width: 100%;
-
     & label {
       width: 100%;
     }

@@ -5,25 +5,50 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import Navbar from './components/Navbar';
 import AddQuestion from './pages/Questions/AddQuestion';
-import EditQuestion from './pages/MyPage/EditQuestion';
-import DeleteQuestion from './pages/MyPage/DeleteQuestion';
+import DeleteQuestion from './pages/MyPage/UserQuestionPage/DeleteQuestion';
 import MyPage from './pages/MyPage/MyPage';
+import Footer from './components/Footer';
+import { BackgroundLayout, GlobalStyle } from './GlobalStyle';
+import Questions from './pages/Questions/Questions';
+import EditProfilePage from './pages/MyPage/EditProfilePage';
+import UserQuestionPage from './pages/MyPage/UserQuestionPage/UserQuestionPage';
+import EditQuestionPage from './pages/MyPage/UserQuestionPage/EditQuestionPage';
+import Question from './pages/Questions/Question';
+import DeleteProfile from './pages/MyPage/DeleteProfile';
 
 function App() {
   return (
-    <div>
-      <Navbar />
+    <>
+      <BackgroundLayout>
+        <GlobalStyle />
+        <Navbar />
 
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/add-question" element={<AddQuestion />} />
-        <Route path="/edit-question" element={<EditQuestion />} />
-        <Route path="/delete-question" element={<DeleteQuestion />} />
-      </Routes>
-    </div>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/questions" element={<Questions />} />
+          {/* 게시글 단건 조회 */}
+          <Route path="/questions/:boardId" element={<Question />} />
+          {/* 게시글 수정 */}
+          <Route path="/questions/edit/:boardId" element={<Question />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/edit-mypage" element={<EditProfilePage />} />
+          <Route path="/delete-account" element={<DeleteProfile />} />
+          <Route path="/user-question" element={<UserQuestionPage />} />
+          <Route path="/add-question" element={<AddQuestion />} />
+          <Route
+            path="/edit-question/:boardId"
+            element={<EditQuestionPage />}
+          />
+          <Route
+            path="/delete-question/:boardId"
+            element={<DeleteQuestion />}
+          />
+        </Routes>
+      </BackgroundLayout>
+      <Footer />
+    </>
   );
 }
 

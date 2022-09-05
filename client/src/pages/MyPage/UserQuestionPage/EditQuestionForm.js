@@ -1,35 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useParams, useNavigate } from 'react-router-dom';
 
-axios.defaults.withCredentials = true;
-
-function AddQuestion() {
+function EditQuestionForm() {
   const navigate = useNavigate();
+  const params = useParams();
+  const [data, setData] = useState({});
 
-  const [data, setData] = useState({
-    writer: localStorage.username,
-    title: '',
-    content: '',
-  });
+  useEffect(() => {
+    const body = {
+      boardId: params.boardId,
+    };
+    axios
+      .get(
+        `http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/questions/${params.boardId}`,
+        body,
+      )
+      .then((res) => {
+        setData(res.data);
+      });
+  }, []);
+
   const onChange = (event) => {
     const { name, value } = event.target;
     setData((prev) => ({
-      ...prev, // 기존 객체 복사 (spread)
+      ...prev,
       [name]: value,
     }));
   };
-  const onSubmit = (event) => {
-    event.preventDefault();
 
+  // axio put 만들어야함
+
+  const onSubmit = (e) => {
+    e.preventDefault();
     axios
-      .post(
-        'http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/questions',
-        data,
-      )
-      .then(() => {
-        alert(`Successfully posted!`);
+      .patch(`/questions/${params.boardId}`, data)
+      .then((res) => {
+        console.log(res.data);
         navigate('/questions');
       })
       .catch((err) => console.log(`${err}`));
@@ -37,7 +45,7 @@ function AddQuestion() {
 
   return (
     <EditQuestionFormLayout>
-      <h2> Add New Question</h2>
+      <h2> Edit Your Question</h2>
       <EditQuestionBox>
         <form
           action=""
@@ -48,13 +56,23 @@ function AddQuestion() {
           <div>
             <label htmlFor="title">
               Title
-              <input type="title" id="title" name="title" />
+              <input
+                type="title"
+                id="title"
+                name="title"
+                defaultValue={data.title}
+              />
             </label>
           </div>
           <div>
             <label htmlFor="content">
               Content
-              <textarea type="text" id="content" name="content" />
+              <textarea
+                type="text"
+                id="content"
+                name="content"
+                defaultValue={data.content}
+              />
             </label>
           </div>
           <input
@@ -68,8 +86,7 @@ function AddQuestion() {
     </EditQuestionFormLayout>
   );
 }
-
-export default AddQuestion;
+export default EditQuestionForm;
 
 const EditQuestionFormLayout = styled.div`
   width: 100%;

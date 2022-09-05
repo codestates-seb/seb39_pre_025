@@ -1,26 +1,26 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import AsideMenubar from './AsideMenubar';
+import Profile from './Profile';
+// 여기서 프로프필 소개 그리고 프로필 소개 수정 되는 프로필 최종 페이지 입니다
 
 function MyPage() {
-  const navigate = useNavigate();
-
-  const editQuestion = () => {
-    navigate('/edit-question');
-  };
-  const deleteQuestion = () => {
-    navigate('/delete-question');
-  };
-
   return (
-    <div>
-      <button type="button" onClick={editQuestion}>
-        Edit Question
-      </button>
-      <button type="button" onClick={deleteQuestion}>
-        Delete Question
-      </button>
-    </div>
+    <MyPageLayout>
+      <div style={{ width: '180px', height: '100%' }}>
+        <AsideMenubar />
+      </div>
+
+      <Profile />
+    </MyPageLayout>
   );
 }
 
 export default MyPage;
+
+const MyPageLayout = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+`;

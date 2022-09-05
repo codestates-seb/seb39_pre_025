@@ -1,8 +1,11 @@
+/* eslint-disable dot-notation */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({ email: '', password: '' });
 
   const onChange = (e) => {
@@ -15,9 +18,20 @@ function LoginForm() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    axios.defaults.withCredentials = true;
     axios
-      .post('/users/login', userInfo)
-      .then((response) => console.log(response.data))
+      .post(
+        'http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/login',
+        userInfo,
+      )
+      .then((response) => {
+        const accessToken = response.headers.authorization;
+        localStorage.setItem('accessToken', accessToken);
+        const loginStatus = true;
+        localStorage.setItem('loginStatus', loginStatus);
+        axios.defaults.headers.common['Authorization'] = `${accessToken}`;
+        navigate('/');
+      })
       .catch((err) => console.log(`${err}`));
   };
 
@@ -30,11 +44,11 @@ function LoginForm() {
       >
         <label htmlFor="email">
           Email <br />
-          <input type="email" />
+          <input type="email" name="email" />
         </label>
         <label htmlFor="pasword">
           Password <br />
-          <input type="password" />
+          <input type="password" name="password" />
         </label>
         <br />
         <button
