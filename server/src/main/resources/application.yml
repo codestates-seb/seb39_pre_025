@@ -30,6 +30,13 @@ spring:
 
 #
 
-
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+    show_sql: true
+logging.level:
+  org.hibernate.SQL: debug
 
 
