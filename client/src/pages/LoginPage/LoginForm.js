@@ -26,9 +26,7 @@ function LoginForm() {
         localStorage.setItem('accessToken', accessToken);
         const loginStatus = true;
         localStorage.setItem('loginStatus', loginStatus);
-        axios.defaults.headers.common[
-          'Authorization'
-        ] = `Bearer ${accessToken}`;
+        axios.defaults.headers.common['Authorization'] = `${accessToken}`;
         navigate('/');
       })
       .catch((err) => console.log(`${err}`));
