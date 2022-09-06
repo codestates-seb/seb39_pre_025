@@ -1,6 +1,7 @@
 package com.pre.entity;
 
 import com.pre.model.Member;
+import com.pre.model.MemberBoard;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,9 +32,9 @@ public class BoardPost {
     @Column(nullable = false)
     private String content;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "writer_id")
-//    private Member writer;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "writer_id")
+    private MemberBoard writer;
 
 
     // 내용 수정
