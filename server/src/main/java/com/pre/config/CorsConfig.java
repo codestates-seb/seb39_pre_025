@@ -8,7 +8,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://pre-client.s3-website-us-east-1.amazonaws.com/", allowedHeaders = "*")
 public class CorsConfig {
 
     @Bean
