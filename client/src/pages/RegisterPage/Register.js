@@ -25,9 +25,10 @@ function Register() {
   const onSubmit = async (e) => {
     e.preventDefault();
     const res = await axios.post('/users/register', userInfo);
-    console.log(res);
+    // console.log(JSON.parse(res.config.data));
     // if (res.status === '200') {
-    const { username } = res.data;
+
+    const { username } = JSON.parse(res.config.data);
     localStorage.setItem('username', username);
     return navigate('/login');
 

@@ -80,8 +80,8 @@ export default Questions;
 const QuestionsLayout = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
-  box-sizing: border-box;
+  height: 100vh;
+  overflow: scroll;
 
   .add-question-btn-section {
     margin-top: 1rem;
