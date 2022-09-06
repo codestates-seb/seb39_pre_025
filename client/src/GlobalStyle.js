@@ -1,6 +1,11 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+  * {
+    list-style: none;
+    text-decoration: none;
+  }
+
     body {
         box-sizing: border-box;
         margin: 0;
