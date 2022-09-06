@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import Questions from '../Questions/Questions';
 import Main from './Main';
 /**
@@ -8,7 +9,7 @@ import Main from './Main';
 
 function LandingPage() {
   return (
-    <div>
+    <LandingPageLayout>
       {localStorage.loginStatus === 'true' ? (
         <Questions />
       ) : (
@@ -16,8 +17,12 @@ function LandingPage() {
           <Main />
         </div>
       )}
-    </div>
+    </LandingPageLayout>
   );
 }
 
 export default LandingPage;
+
+const LandingPageLayout = styled.div`
+  width: 100%;
+`;
