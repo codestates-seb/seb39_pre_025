@@ -20,10 +20,7 @@ function LoginForm() {
     e.preventDefault();
     axios.defaults.withCredentials = true;
     axios
-      .post(
-        'http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/login',
-        userInfo,
-      )
+      .post(`${process.env.REACT_APP_API_URI}/login`, userInfo)
       .then((response) => {
         const accessToken = response.headers.authorization;
         localStorage.setItem('accessToken', accessToken);

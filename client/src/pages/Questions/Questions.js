@@ -15,7 +15,7 @@ function Questions() {
   const fetchData = async () => {
     axios.defaults.withCredentials = true;
     const response = await axios.get(
-      'http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/questions',
+      `${process.env.REACT_APP_API_URI}/questions`,
     );
     console.log(response.data.content);
     setQuestionsList(response.data.content);
@@ -104,7 +104,7 @@ const QuestionsLayout = styled.div`
 const TitleBox = styled.div`
   cursor: pointer;
   font-size: 0.9rem;
-  color: #54a0ff;s
+  color: #54a0ff;
 `;
 
 const ContentBox = styled.div`

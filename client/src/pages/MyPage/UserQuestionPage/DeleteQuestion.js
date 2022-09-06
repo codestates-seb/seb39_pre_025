@@ -14,7 +14,7 @@ function DeleteQuestion() {
     };
 
     const res = await axios.delete(
-      `http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/questions/${params.boardId}`,
+      `${process.env.REACT_APP_API_URI}/questions/${params.boardId}`,
       body,
     );
     if (res.status !== 200) return alert('삭제 요청 실패!');
