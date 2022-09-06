@@ -15,7 +15,9 @@ function AboutProfileBox() {
   const navigate = useNavigate();
 
   const getProfile = async () => {
-    const response = await axios.get('/mypage');
+    const response = await axios.get(
+      'http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/mypage',
+    );
     console.log(response.data);
     // const temp = request.data.questions.filter((el) => el.writer === userId);
     setMyProfileList(response.data.body);
