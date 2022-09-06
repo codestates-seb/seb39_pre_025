@@ -13,7 +13,10 @@ function EditQuestionForm() {
       boardId: params.boardId,
     };
     axios
-      .get(`${process.env.REACT_APP_API_URI}/questions/${params.boardId}`, body)
+      .get(
+        `http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/questions/${params.boardId}`,
+        body,
+      )
       .then((res) => {
         setData(res.data);
       });
@@ -33,7 +36,7 @@ function EditQuestionForm() {
     e.preventDefault();
     axios
       .patch(
-        `${process.env.REACT_APP_API_URI}/questions/${params.boardId}`,
+        `http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/questions/${params.boardId}`,
         data,
       )
       .then((res) => {
