@@ -91,4 +91,6 @@ public class BoardController {
         return new ResponseEntity<>(boardResponseDto, HttpStatus.ACCEPTED);
 
     }
+
+
 }
