@@ -41,8 +41,8 @@ public class MemberBoard {
 
     private String role;   // 권한 -> USER, ADMIN
 
-
     @OneToMany(mappedBy = "writer")
+    @Builder.Default
     private List<BoardPost> postList = new ArrayList<>();
 
 
