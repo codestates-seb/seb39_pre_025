@@ -50,7 +50,7 @@ function Navbar() {
           {isOpen && <Aside />}
         </NavLinkBox>
         <LogoButton type="button" onClick={handleLogoClick}>
-          <FontAwesomeIcon icon={faStackOverflow} size="2x" />
+          <FontAwesomeIcon icon={faStackOverflow} size="1x" />
           <span>
             stack <b>overflow</b>
           </span>
@@ -113,7 +113,7 @@ const NavbarLayout = styled.div`
 
     #search {
       // 검색어 입력 인풋필드
-      width: 50%;
+      width: 80%;
       height: 40px;
       border: 0.2px solid gray;
     }
@@ -121,6 +121,8 @@ const NavbarLayout = styled.div`
     #search-btn {
       // 질문 검색 버튼
       color: gray;
+      height: 40px;
+      line-height: 40px;
       background-color: transparent;
       border: none;
       cursor: pointer;
@@ -128,6 +130,9 @@ const NavbarLayout = styled.div`
       position: relative;
       top: 8px;
       margin: 0 10px;
+      box-shadow: 2px 2px 13px rgba(0, 0, 0, 0.3);
+      padding: 3px;
+      border-radius: 3px;
 
       :hover {
         color: skyblue;
@@ -144,7 +149,7 @@ const NavLinkBox = styled.div`
   display: flex;
   font-size: 20px;
   margin-right: 20px;
-
+  cursor: pointer;
   &.hidden {
     display: none;
   }

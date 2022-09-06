@@ -7,19 +7,16 @@ function Aside() {
     <AsideLayout>
       <ul>
         <li>
-          <Link to="/">홈</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/login">로그인</Link>
+          <Link to="/login">Login</Link>
         </li>
         <li>
-          <Link to="/register">회원가입</Link>
+          <Link to="/register">Register</Link>
         </li>
         <li>
           <Link to="/questions">Questions</Link>
-        </li>
-        <li>
-          <Link to="/mypage">My page</Link>
         </li>
       </ul>
     </AsideLayout>
@@ -31,7 +28,33 @@ export default Aside;
 const AsideLayout = styled.div`
   position: absolute;
   top: 60px;
+  background-color: #fff;
+  width: 200px;
+  display: flex;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+
   ul {
-    list-style: none;
+    margin-top: 2rem;
+    width: 100%;
+    height: 230px;
+
+    & li {
+      margin-left: -2.5rem;
+      width: 200px;
+      list-style: none;
+      line-height: 50px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    li:hover {
+      background-color: #ddd;
+      color: #000;
+      border-right: 2px solid #f27622;
+    }
+    a {
+      text-decoration: none;
+      color: #444;
+      cursor: pointer;
+    }
   }
 `;
