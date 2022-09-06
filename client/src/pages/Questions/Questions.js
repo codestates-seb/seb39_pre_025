@@ -51,7 +51,7 @@ function Questions() {
             return (
               <ListItem key={Math.random()} value={idx}>
                 <UserIDBox>
-                  <div className="author">userID{question.id} </div>
+                  <div className="author">{question.writer} </div>
                 </UserIDBox>
                 <QuestionListBox>
                   <Link to={`/questions/${question.id}`}>
@@ -82,8 +82,8 @@ export default Questions;
 const QuestionsLayout = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
-  box-sizing: border-box;
+  height: 100vh;
+  overflow: scroll;
 
   .add-question-btn-section {
     margin-top: 1rem;

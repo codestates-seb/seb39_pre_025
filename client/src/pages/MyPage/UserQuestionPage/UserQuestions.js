@@ -16,9 +16,7 @@ function UserQuestions() {
     console.log(response.data);
 
     setQuestionsList(
-      response.data.questions.filter(
-        (el) => el.writer === localStorage.username,
-      ),
+      response.data.filter((el) => el.writer === localStorage.username),
     );
   };
 
