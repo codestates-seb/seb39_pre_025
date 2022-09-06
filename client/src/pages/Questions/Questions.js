@@ -49,7 +49,7 @@ function Questions() {
             return (
               <ListItem key={Math.random()} value={idx}>
                 <UserIDBox>
-                  <div className="author">userID{question.id} </div>
+                  <div className="author">{question.writer} </div>
                 </UserIDBox>
                 <QuestionListBox>
                   <Link to={`/questions/${question.id}`}>
@@ -102,7 +102,7 @@ const QuestionsLayout = styled.div`
 const TitleBox = styled.div`
   cursor: pointer;
   font-size: 0.9rem;
-  color: #54a0ff;s
+  color: #54a0ff;
 `;
 
 const ContentBox = styled.div`
