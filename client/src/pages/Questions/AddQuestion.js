@@ -7,9 +7,9 @@ axios.defaults.withCredentials = true;
 
 function AddQuestion() {
   const navigate = useNavigate();
-
+  const writer = localStorage.getItem('username');
   const [data, setData] = useState({
-    writer: localStorage.username,
+    writer,
     title: '',
     content: '',
   });
@@ -22,10 +22,11 @@ function AddQuestion() {
   };
   const onSubmit = (event) => {
     event.preventDefault();
-
+    console.log(data);
     axios
       .post('/questions', data)
-      .then(() => {
+      .then((res) => {
+        console.log(res.data);
         alert(`Successfully posted!`);
         navigate('/questions');
       })
