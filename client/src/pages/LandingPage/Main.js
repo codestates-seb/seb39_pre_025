@@ -127,7 +127,7 @@ const MainBox = styled.div`
   box-sizing: border-box;
   background-color: #353a3e;
   margin: 0 auto;
-  margin-top: 20rem;
+  margin-top: 3rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;

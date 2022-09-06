@@ -27,8 +27,8 @@ function Register() {
     const res = await axios.post('/users/register', userInfo);
     console.log(res);
     // if (res.status === '200') {
-    // const { username } = res.data;
-    // localStorage.setItem('username', username);
+    const { username } = res.data;
+    localStorage.setItem('username', username);
     return navigate('/login');
 
     // return alert('화원가입에 실패하였습니다. 입력한 정보를 확인해주세요');
