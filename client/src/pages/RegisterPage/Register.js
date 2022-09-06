@@ -25,7 +25,7 @@ function Register() {
   const onSubmit = async (e) => {
     e.preventDefault();
     const res = await axios.post(
-      `${process.env.REACT_APP_API_URI}/users/register`,
+      `http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/users/register`,
       userInfo,
     );
     console.log(res);
