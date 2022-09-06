@@ -7,9 +7,9 @@ axios.defaults.withCredentials = true;
 
 function AddQuestion() {
   const navigate = useNavigate();
-
+  const writer = localStorage.getItem('username');
   const [data, setData] = useState({
-    writer: localStorage.username,
+    writer,
     title: '',
     content: '',
   });
@@ -22,7 +22,7 @@ function AddQuestion() {
   };
   const onSubmit = (event) => {
     event.preventDefault();
-
+    console.log(data);
     axios
       .post(
         'http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/questions',

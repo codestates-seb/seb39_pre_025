@@ -25,13 +25,15 @@ function Register() {
   const onSubmit = async (e) => {
     e.preventDefault();
     const res = await axios.post(
-      'http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/users/register',
+      `${process.env.REACT_APP_API_URI}/users/register`,
       userInfo,
     );
     console.log(res);
+
     // if (res.status === '200') {
-    // const { username } = res.data;
-    // localStorage.setItem('username', username);
+
+    const { username } = JSON.parse(res.config.data);
+    localStorage.setItem('username', username);
     return navigate('/login');
 
     // return alert('화원가입에 실패하였습니다. 입력한 정보를 확인해주세요');

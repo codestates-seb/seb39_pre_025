@@ -1,7 +1,13 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+  * {
+    list-style: none;
+    text-decoration: none;
+  }
+
     body {
+
         box-sizing: border-box;
         margin: 0;
         padding: 0;
@@ -16,7 +22,6 @@ export const BackgroundLayout = styled.div`
   // 세로로 맞추기 위해 flex 줬습니다.
   margin-top: 60px;
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
