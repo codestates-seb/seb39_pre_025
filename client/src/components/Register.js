@@ -25,7 +25,10 @@ function Register() {
     e.preventDefault();
     if (userInfo.password === userInfo.confirmPassword) {
       await axios
-        .post(`${process.env.REACT_APP_API_URI}/users/register`, userInfo)
+        .post(
+          `http://ec2-52-71-227-130.compute-1.amazonaws.com:8080/users/register`,
+          userInfo,
+        )
         .then(() => navigate('/login'))
         .catch((err) => alert(`${err}`));
     }
