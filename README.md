@@ -1,5 +1,5 @@
 # 25조
-
+[배포 링크](http://pre-client.s3-website-us-east-1.amazonaws.com/)
 ## 팀원
 
 ### FE
