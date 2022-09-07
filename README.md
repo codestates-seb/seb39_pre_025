@@ -12,7 +12,7 @@
 
 ## 기술스택
 ### FE
-React, axios, styled-components
+React, axios, styled-components, aws S3
 ### BE
-Spring Boot, Spring Security
+Spring Boot, Spring Security, aws ec2, RDS
 
